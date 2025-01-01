@@ -9,6 +9,7 @@ import {
     UserRegistrationSchema,
 } from '@/schemas/auth.schema'
 
+import { onCompleteUserRegistration } from "@/actions/auth";
 
 export const useSignUpForm = () => {
     const { toast } = useToast()
@@ -91,6 +92,14 @@ export const useSignUpForm = () => {
             })
           }
         }
-      )
+      )  
+
+      return {
+        methods,
+        onHandleSubmit,
+        onGenerateOTP,
+        loading,
+        
+      }
 
 }
