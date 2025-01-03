@@ -11,19 +11,22 @@ export const onGetBlogPosts = async () => {
             createdAt: Date
         }[] = []
         const postsUrl = process.env.CLOUDWAYS_POSTS_URL
+        console.log(postsUrl, "postsurl")
         if (!postsUrl) return
         const posts = await axios.get(postsUrl)
         const featuredImages = process.env.CLOUDWAYS_FEATURED_IMAGES_URL
+        console.log(featuredImages, "postsurl")
         if (!featuredImages) return
 
         let i = 0
         while (i < posts.data.length) {
+            console.log(posts.data, "postsdatalength")
             const image = await axios.get(
-                `${featuredImages}/${posts.data[i].featured_media}`
+                `${featuredImages}/${posts?.data[i]?.featured_media}`
             )
             if (image) {
                 //we push a post object into the array
-                console.log(image.data.media_details)
+
                 const post: {
                     id: string
                     title: string
