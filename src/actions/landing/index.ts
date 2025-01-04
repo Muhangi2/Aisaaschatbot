@@ -52,18 +52,15 @@ export const onGetBlogPosts = async () => {
 
 export const onGetBlogPost = async (id: string | number) => {
     try {
-        console.log(id, "idddddd")
+
         const postUrl = process.env.CLOUDWAYS_POSTS_URL
-        console.log(postUrl, "posturl")
+
         if (!postUrl) return
         const { data: postData } = await axios.get(`${postUrl}/${id}`)
-        console.log(postData, "postttt")
         if (postData) {
             const authorUrl = process.env.CLOUDWAYS_USERS_URL
-            console.log(authorUrl, "authorurl")
             if (!authorUrl) return
             const { data: author } = await axios.get(`${authorUrl}${postData?.author}`)
-            console.log(author, "authorrrr")
             if (author) {
                 return {
                     id: postData.id,
