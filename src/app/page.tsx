@@ -20,7 +20,7 @@ import { getMonthName } from "@/lib/utils";
 export default async function Home() {
   const posts:
     | {
-        id: string;
+        id: string|number;
         title: string;
         image: string;
         content: string;
@@ -118,11 +118,11 @@ export default async function Home() {
             <Link href={`/blogs/${post.id}`} key={post.id}>
               <Card className="flex flex-col gap-2 rounded-xl overflow-hidden h-full hover:bg-gray-100">
                 <div className="relative w-full aspect-video">
-                  {/* <Image
+                  <Image
                     src={`${process.env.CLOUDWAYS_UPLOADS_URL}${post.image}`}
                     alt="post featured image"
                     fill
-                  /> */}
+                  />
                 </div>
                 <div className="py-5 px-10 flex flex-col gap-5">
                   <CardDescription>

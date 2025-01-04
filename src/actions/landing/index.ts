@@ -4,31 +4,28 @@ import axios from 'axios'
 export const onGetBlogPosts = async () => {
     try {
         const postArray: {
-            id: string
+            id: string | number
             title: string
             image: string
             content: string
             createdAt: Date
         }[] = []
         const postsUrl = process.env.CLOUDWAYS_POSTS_URL
-        console.log(postsUrl, "postsurl")
         if (!postsUrl) return
         const posts = await axios.get(postsUrl)
         const featuredImages = process.env.CLOUDWAYS_FEATURED_IMAGES_URL
-        console.log(featuredImages, "postsurl")
         if (!featuredImages) return
 
         let i = 0
         while (i < posts.data.length) {
-            console.log(posts.data, "postsdatalength")
             const image = await axios.get(
-                `${featuredImages}/${posts?.data[i]?.featured_media}`
+                `${featuredImages}/${posts.data[i].featured_media}`
             )
             if (image) {
                 //we push a post object into the array
-
+                console.log(image.data.media_details)
                 const post: {
-                    id: string
+                    id: string | number
                     title: string
                     image: string
                     content: string
@@ -53,22 +50,27 @@ export const onGetBlogPosts = async () => {
     }
 }
 
-export const onGetBlogPost = async (id: string) => {
+export const onGetBlogPost = async (id: string | number) => {
     try {
+        console.log(id, "idddddd")
         const postUrl = process.env.CLOUDWAYS_POSTS_URL
+        console.log(postUrl, "posturl")
         if (!postUrl) return
-        const post = await axios.get(`${postUrl}/${id}`)
-        if (post.data) {
+        const { data: postData } = await axios.get(`${postUrl}/${id}`)
+        console.log(postData, "postttt")
+        if (postData) {
             const authorUrl = process.env.CLOUDWAYS_USERS_URL
+            console.log(authorUrl, "authorurl")
             if (!authorUrl) return
-            const author = await axios.get(`${authorUrl}${post.data.author}`)
-            if (author.data) {
+            const { data: author } = await axios.get(`${authorUrl}${postData?.author}`)
+            console.log(author, "authorrrr")
+            if (author) {
                 return {
-                    id: post.data.id,
-                    title: post.data.title.rendered,
-                    content: post.data.content.rendered,
-                    createdAt: new Date(post.data.date),
-                    author: author.data.name,
+                    id: postData.id,
+                    title: postData.title.rendered,
+                    content: postData.content.rendered,
+                    createdAt: new Date(postData.date),
+                    author: author.name,
                 }
             }
         }
