@@ -1,4 +1,4 @@
-import { useDomain } from "@/hooks/sidebar/use-domain";
+import { useDomain } from "@/hooks/side-bar/use-domain";
 import { cn } from "@/lib/utils";
 import React from "react";
 import AppDrawer from "../drawer";
