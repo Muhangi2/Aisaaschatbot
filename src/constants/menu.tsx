@@ -1,65 +1,75 @@
-import Image from 'next/image'
+import CalIcon from '@/icons/cal-icon'
+import ChatIcon from '@/icons/chat-icon'
+import DashboardIcon from '@/icons/dashboard-icon'
+import EmailIcon from '@/icons/email-icon'
+import HelpDeskIcon from '@/icons/help-desk-icon'
+import IntegrationsIcon from '@/icons/integrations-icon'
+import SettingsIcon from '@/icons/settings-icon'
+import StarIcon from '@/icons/star-icon'
+import TimerIcon from '@/icons/timer-icon'
+import { JSX } from 'react'
+
 
 type SIDE_BAR_MENU_PROPS = {
   label: string
-  icon?: string
+  icon: JSX.Element
   path: string
 }
 
 export const SIDE_BAR_MENU: SIDE_BAR_MENU_PROPS[] = [
   {
     label: 'Dashboard',
-    icon: '/icons/dashboard.svg',
+    icon: <DashboardIcon />,
     path: 'dashboard',
   },
   {
     label: 'Conversations',
-    icon: '/icons/chat.svg',
+    icon: <ChatIcon />,
     path: 'conversation',
   },
   {
     label: 'Integrations',
-    icon: '/icons/integrations.svg',
+    icon: <IntegrationsIcon />,
     path: 'integration',
   },
   {
     label: 'Settings',
-    icon: '/icons/settings.svg',
+    icon: <SettingsIcon />,
     path: 'settings',
   },
   {
     label: 'Appointments',
-    icon: '/icons/cal.svg',
+    icon: <CalIcon />,
     path: 'appointment',
   },
   {
     label: 'Email Marketing',
-    icon: '/icons/email.svg',
+    icon: <EmailIcon />,
     path: 'email-marketing',
   },
 ]
 
 type TABS_MENU_PROPS = {
   label: string
-  icon?: string
+  icon?: JSX.Element
 }
 
 export const TABS_MENU: TABS_MENU_PROPS[] = [
   {
     label: 'unread',
-    icon: '/icons/email.svg',
+    icon: <EmailIcon />,
   },
   {
     label: 'all',
-    icon: '/icons/email.svg',
+    icon: <EmailIcon />,
   },
   {
     label: 'expired',
-    icon: '/icons/timer.svg',
+    icon: <TimerIcon />,
   },
   {
     label: 'starred',
-    icon: '/icons/star.svg',
+    icon: <StarIcon />,
   },
 ]
 
@@ -84,10 +94,10 @@ export const EMAIL_MARKETING_HEADER = ['Id', 'Email', 'Answers', 'Domain']
 export const BOT_TABS_MENU: TABS_MENU_PROPS[] = [
   {
     label: 'chat',
-    icon: '/icons/chat.svg',
+    icon: <ChatIcon />,
   },
   {
     label: 'helpdesk',
-    icon: '/icons/help-desk.svg',
+    icon: <HelpDeskIcon />,
   },
 ]
