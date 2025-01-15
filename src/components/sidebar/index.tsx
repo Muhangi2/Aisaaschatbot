@@ -19,11 +19,6 @@ type Props = {
 const SideBar = ({ domains }: Props) => {
   const { expand, onExpand, page, onSignOut } = useSideBar();
 
-  console.log(expand, "expandingng ");
-  console.log(onExpand, "onexpanding");
-  console.log(onSignOut, "onsignout");
-  console.log(page, "pagee");
-
   return (
     <div
       className={cn(
@@ -34,7 +29,6 @@ const SideBar = ({ domains }: Props) => {
           : expand == false && "animate-close-sidebar"
       )}
     >
-      why me
       {expand ? (
         <MaxMenu
           domains={domains}
