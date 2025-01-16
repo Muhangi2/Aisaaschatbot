@@ -1,7 +1,7 @@
 import { onGetCurrentDomainInfo } from "@/actions/settings";
-// import BotTrainingForm from '@/components/forms/settings/bot-training'
+import BotTrainingForm from "@/components/forms/settings/bot-training";
 import SettingsForm from "@/components/forms/settings/form";
-// import ProductTable from '@/components/products'
+import ProductTable from "@/components/products";
 import InfoBar from "@/components/infobar";
 import { redirect } from "next/navigation";
 import React from "react";
@@ -22,11 +22,11 @@ const DomainSettingsPage = async ({ params }: Props) => {
           id={domain.domains[0]?.id}
           name={domain.domains[0]?.name}
         />
-        {/* <BotTrainingForm id={domain.domains[0].id} />
+        <BotTrainingForm id={domain.domains[0]?.id} />
         <ProductTable
-          id={domain.domains[0].id}
-          products={domain.domains[0].products || []}
-        /> */}
+          id={domain.domains[0]?.id}
+          products={domain.domains[0]?.products || []}
+        />
       </div>
     </>
   );
