@@ -79,7 +79,7 @@ export const useChatBot = () => {
   //   )
   // }, [botOpened])
 
-  // let limitRequest = 0
+  let limitRequest = 0
 
   const onGetDomainChatBot = async (id: string) => {
     setCurrentBotId(id)
@@ -97,96 +97,96 @@ export const useChatBot = () => {
     }
   }
 
-//   useEffect(() => {
-//     window.addEventListener('message', (e) => {
-//       console.log(e.data)
-//       const botid = e.data
-//       if (limitRequest < 1 && typeof botid == 'string') {
-//         onGetDomainChatBot(botid)
-//         limitRequest++
-//       }
-//     })
-//   }, [])
+  useEffect(() => {
+    window.addEventListener('message', (e) => {
+      console.log(e.data)
+      const botid = e.data
+      if (limitRequest < 1 && typeof botid == 'string') {
+        onGetDomainChatBot(botid)
+        limitRequest++
+      }
+    })
+  }, [])
 
-//   const onStartChatting = handleSubmit(async (values) => {
-//     console.log('ALL VALUES', values)
+  const onStartChatting = handleSubmit(async (values) => {
+    // console.log('ALL VALUES', values)
 
-//     if (values.image.length) {
-//       console.log('IMAGE fROM ', values.image[0])
-//       const uploaded = await upload.uploadFile(values.image[0])
-//       if (!onRealTime?.mode) {
-//         setOnChats((prev: any) => [
-//           ...prev,
-//           {
-//             role: 'user',
-//             content: uploaded.uuid,
-//           },
-//         ])
-//       }
+    // if (values.image.length) {
+    //   console.log('IMAGE fROM ', values.image[0])
+    //   const uploaded = await upload.uploadFile(values.image[0])
+    //   if (!onRealTime?.mode) {
+    //     setOnChats((prev: any) => [
+    //       ...prev,
+    //       {
+    //         role: 'user',
+    //         content: uploaded.uuid,
+    //       },
+    //     ])
+    //   }
 
-//       console.log('🟡 RESPONSE FROM UC', uploaded.uuid)
-//       setOnAiTyping(true)
-//       const response = await onAiChatBotAssistant(
-//         currentBotId!,
-//         onChats,
-//         'user',
-//         uploaded.uuid
-//       )
+    //   console.log('🟡 RESPONSE FROM UC', uploaded.uuid)
+    //   setOnAiTyping(true)
+    //   const response = await onAiChatBotAssistant(
+    //     currentBotId!,
+    //     onChats,
+    //     'user',
+    //     uploaded.uuid
+    //   )
 
-//       if (response) {
-//         setOnAiTyping(false)
-//         if (response.live) {
-//           setOnRealTime((prev) => ({
-//             ...prev,
-//             chatroom: response.chatRoom,
-//             mode: response.live,
-//           }))
-//         } else {
-//           setOnChats((prev: any) => [...prev, response.response])
-//         }
-//       }
-//     }
-//     reset()
+    //   if (response) {
+    //     setOnAiTyping(false)
+    //     if (response.live) {
+    //       setOnRealTime((prev) => ({
+    //         ...prev,
+    //         chatroom: response.chatRoom,
+    //         mode: response.live,
+    //       }))
+    //     } else {
+    //       setOnChats((prev: any) => [...prev, response.response])
+    //     }
+    //   }
+    // }
+    // reset()
 
-//     if (values.content) {
-//       if (!onRealTime?.mode) {
-//         setOnChats((prev: any) => [
-//           ...prev,
-//           {
-//             role: 'user',
-//             content: values.content,
-//           },
-//         ])
-//       }
+    // if (values.content) {
+    //   if (!onRealTime?.mode) {
+    //     setOnChats((prev: any) => [
+    //       ...prev,
+    //       {
+    //         role: 'user',
+    //         content: values.content,
+    //       },
+    //     ])
+    //   }
 
-//       setOnAiTyping(true)
+    //   setOnAiTyping(true)
 
-//       const response = await onAiChatBotAssistant(
-//         currentBotId!,
-//         onChats,
-//         'user',
-//         values.content
-//       )
+    //   const response = await onAiChatBotAssistant(
+    //     currentBotId!,
+    //     onChats,
+    //     'user',
+    //     values.content
+    //   )
 
-//       if (response) {
-//         setOnAiTyping(false)
-//         if (response.live) {
-//           setOnRealTime((prev) => ({
-//             ...prev,
-//             chatroom: response.chatRoom,
-//             mode: response.live,
-//           }))
-//         } else {
-//           setOnChats((prev: any) => [...prev, response.response])
-//         }
-//       }
-//     }
-//   })
+    //   if (response) {
+    //     setOnAiTyping(false)
+    //     if (response.live) {
+    //       setOnRealTime((prev) => ({
+    //         ...prev,
+    //         chatroom: response.chatRoom,
+    //         mode: response.live,
+    //       }))
+    //     } else {
+    //       setOnChats((prev: any) => [...prev, response.response])
+    //     }
+    //   }
+    // }
+  })
 
   return {
     botOpened,
     onOpenChatBot,
-    // onStartChatting,
+    onStartChatting,
     onChats,
     register,
     onAiTyping,

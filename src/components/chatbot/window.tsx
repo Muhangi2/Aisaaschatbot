@@ -23,7 +23,7 @@ type Props = {
   errors: any;
   register: UseFormRegister<ChatBotMessageProps>;
   chats: { role: "assistant" | "user"; content: string; link?: string }[];
-  //   onChat(): void
+  onChat(): void;
   onResponding: boolean;
   domainName: string;
   theme?: string | null;
@@ -58,7 +58,7 @@ export const BotWindow = forwardRef<HTMLDivElement, Props>(
       errors,
       register,
       chats,
-      //   onChat,
+      onChat,
       onResponding,
       domainName,
       helpdesk,
@@ -70,16 +70,19 @@ export const BotWindow = forwardRef<HTMLDivElement, Props>(
     },
     ref
   ) => {
+    console.log(helpdesk, "onResponding......");
+    console.log(onResponding, "onResponding......");
+    console.log(chats, "onResponding......");
     console.log(errors);
     return (
-      <div className="h-[670px] w-[450px] flex flex-col bg-white rounded-xl mr-[80px] border-[1px] overflow-hidden">
-        <div className="flex justify-between px-4 pt-4">
-          <div className="flex gap-2">
+      <div className="h-[670px] w-[450px] flex flex-col  rounded-xl mr-[80px] border-[1px]  overflow-scroll ">
+        <div className="flex justify-between px-4 pt-4 ">
+          <div className="flex gap-2 ">
             <Avatar className="w-20 h-20">
               <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
-            <div className="flex items-start flex-col">
+            <div className="flex items-start flex-col ">
               <h3 className="text-lg font-bold leading-none">
                 Sales Rep - Web Prodigies
               </h3>
@@ -92,7 +95,7 @@ export const BotWindow = forwardRef<HTMLDivElement, Props>(
               )}
             </div>
           </div>
-          <div className="relative w-16 h-16">
+          <div className="relative w-16 h-16 ">
             <Image
               src="https://ucarecdn.com/019dd17d-b69b-4dea-a16b-60e0f25de1e9/propuser.png"
               fill
@@ -103,7 +106,7 @@ export const BotWindow = forwardRef<HTMLDivElement, Props>(
         </div>
         <TabsMenu
           triggers={BOT_TABS_MENU}
-          className=" bg-transparent border-[1px] border-border m-2"
+          className=" bg-transparent border-[1px] border-border m-2  "
         >
           <TabsContent value="chat">
             <Separator orientation="horizontal" />
@@ -120,10 +123,11 @@ export const BotWindow = forwardRef<HTMLDivElement, Props>(
                   <Bubble key={key} message={chat} />
                 ))}
                 {onResponding && <Responding />}
+                {/* <Responding /> */}
               </div>
               <form
-                // onSubmit={onChat}
-                className="flex px-3 py-1 flex-col flex-1 bg-porcelain"
+                onSubmit={onChat}
+                className="flex px-3 py-1 flex-col flex-1 bg-porcelain bg-gray-200"
               >
                 <div className="flex justify-between">
                   <Input
@@ -168,7 +172,7 @@ export const BotWindow = forwardRef<HTMLDivElement, Props>(
             </div>
           </TabsContent>
         </TabsMenu>
-        <div className="flex justify-center ">
+        <div className="flex justify-center  ">
           <p className="text-gray-400 text-xs">Powered By Web Prodigies</p>
         </div>
       </div>
