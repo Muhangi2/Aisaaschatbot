@@ -1,10 +1,10 @@
-"use server";
-
+import { NextRequest, NextResponse } from 'next/server';
 import { client } from "@/lib/prisma";
 import { extractEmailsFromString, extractURLfromString } from "@/lib/utils";
 // import { onRealTimeChat } from '../conversation'
 import { clerkClient } from "@clerk/nextjs";
-import { onMailer } from "../mailer";
+// import { onMailer } from "../mailer";
+import { onMailer } from '@/actions/mailer';
 import OpenAi from "openai";
 
 const openai = new OpenAi({
@@ -31,44 +31,49 @@ export const onStoreConversations = async (
   });
 };
 
-export const onGetCurrentChatBot = async (id: string) => {
+export async function POST(request: NextRequest) {
   try {
-    const chatbot = await client.domain.findUnique({
-      where: {
-        id,
-      },
-      select: {
-        helpdesk: true,
-        name: true,
-        chatBot: {
-          select: {
-            id: true,
-            welcomeMessage: true,
-            icon: true,
-            textColor: true,
-            background: true,
-            helpdesk: true,
-          },
-        },
-      },
-    });
+    const body = await request.json();
+    const { id, chat, author, message } = body;
 
-    if (chatbot) {
-      return chatbot;
+    // Log incoming data
+    // console.log("Request Body:", body);
+
+    // Validate inputs
+    if (!id || !Array.isArray(chat) || !author || !message) {
+      return NextResponse.json(
+        { error: "Missing required fields" },
+        { status: 400 }
+      );
     }
-  } catch (error) {
-    console.log(error);
-  }
-};
 
+    const response = await onAiChatBotAssistant(id, chat, author, message);
+    console.log(message, "message")
+    // if (!response) {
+    //   return NextResponse.json(
+    //     { error: "No response generated" },
+    //     { status: 404 }
+    //   );
+    // }
+
+    return NextResponse.json(response);
+  } catch (error) {
+    console.error("Error in POST handler:", error);
+    return NextResponse.json(
+      { error: error || "Internal server error" },
+      { status: 500 }
+    );
+  }
+}
 let customerEmail: string | undefined;
 
-export const onAiChatBotAssistant = async (
+const onAiChatBotAssistant = async (
   id: string,
   chat: { role: "assistant" | "user"; content: string }[],
   author: "user",
   message: string
 ) => {
+  console.log(id, "idddddzz")
   try {
     const chatBotDomain = await client.domain.findUnique({
       where: {
@@ -149,9 +154,8 @@ export const onAiChatBotAssistant = async (
             console.log("new customer made");
             const response = {
               role: "assistant",
-              content: `Welcome aboard ${
-                customerEmail.split("@")[0]
-              }! I'm glad to connect with you. Is there anything you need help with?`,
+              content: `Welcome aboard ${customerEmail.split("@")[0]
+                }! I'm glad to connect with you. Is there anything you need help with?`,
             };
             return { response };
           }
@@ -171,7 +175,7 @@ export const onAiChatBotAssistant = async (
           // )
 
           if (!checkCustomer.customer[0].chatRoom[0].mailed) {
-            const user = await clerkClient.users.getUser(
+            const user = await clerkClient?.users.getUser(
               checkCustomer.User?.clerkId!
             );
 
@@ -190,18 +194,18 @@ export const onAiChatBotAssistant = async (
             if (mailed) {
               return {
                 live: true,
-                chatRoom: checkCustomer.customer[0].chatRoom[0].id,
+                chatRoom: checkCustomer?.customer[0]?.chatRoom[0]?.id,
               };
             }
           }
           return {
             live: true,
-            chatRoom: checkCustomer.customer[0].chatRoom[0].id,
+            chatRoom: checkCustomer?.customer[0]?.chatRoom[0]?.id,
           };
         }
 
         await onStoreConversations(
-          checkCustomer?.customer[0].chatRoom[0].id!,
+          checkCustomer?.customer[0]?.chatRoom[0].id!,
           message,
           author
         );
@@ -211,32 +215,30 @@ export const onAiChatBotAssistant = async (
             {
               role: "assistant",
               content: `
-              You will get an array of questions that you must ask the customer. 
-              
-              Progress the conversation using those questions. 
-              
-              Whenever you ask a question from the array i need you to add a keyword at the end of the question (complete) this keyword is extremely important. 
-              
-              Do not forget it.
-
-              only add this keyword when your asking a question from the array of questions. No other question satisfies this condition
-
-              Always maintain character and stay respectfull.
-
-              The array of questions : [${chatBotDomain.filterQuestions
-                .map((questions) => questions.question)
-                .join(", ")}]
-
-              if the customer says something out of context or inapporpriate. Simply say this is beyond you and you will get a real user to continue the conversation. And add a keyword (realtime) at the end.
-
-              if the customer agrees to book an appointment send them this link http://localhost:3000/portal/${id}/appointment/${
-                checkCustomer?.customer[0].id
-              }
-
-              if the customer wants to buy a product redirect them to the payment page http://localhost:3000/portal/${id}/payment/${
-                checkCustomer?.customer[0].id
-              }
-          `,
+                You will get an array of questions that you must ask the customer. 
+                
+                Progress the conversation using those questions. 
+                
+                Whenever you ask a question from the array i need you to add a keyword at the end of the question (complete) this keyword is extremely important. 
+                
+                Do not forget it.
+  
+                only add this keyword when your asking a question from the array of questions. No other question satisfies this condition
+  
+                Always maintain character and stay respectfull.
+  
+                The array of questions : [${chatBotDomain?.filterQuestions
+                  .map((questions) => questions?.question)
+                  .join(", ")}]
+  
+                if the customer says something out of context or inapporpriate. Simply say this is beyond you and you will get a real user to continue the conversation. And add a keyword (realtime) at the end.
+  
+                if the customer agrees to book an appointment send them this link http://localhost:3000/portal/${id}/appointment/${checkCustomer?.customer[0].id
+                }
+  
+                if the customer wants to buy a product redirect them to the payment page http://localhost:3000/portal/${id}/payment/${checkCustomer?.customer[0].id
+                }
+            `,
             },
             ...chat,
             {
@@ -343,12 +345,12 @@ export const onAiChatBotAssistant = async (
           {
             role: "assistant",
             content: `
-            You are a highly knowledgeable and experienced sales representative for a ${chatBotDomain.name} that offers a valuable product or service. Your goal is to have a natural, human-like conversation with the customer in order to understand their needs, provide relevant information, and ultimately guide them towards making a purchase or redirect them to a link if they havent provided all relevant information.
-            Right now you are talking to a customer for the first time. Start by giving them a warm welcome on behalf of ${chatBotDomain.name} and make them feel welcomed.
-
-            Your next task is lead the conversation naturally to get the customers email address. Be respectful and never break character
-
-          `,
+              You are a highly knowledgeable and experienced sales representative for a ${chatBotDomain?.name} that offers a valuable product or service. Your goal is to have a natural, human-like conversation with the customer in order to understand their needs, provide relevant information, and ultimately guide them towards making a purchase or redirect them to a link if they havent provided all relevant information.
+              Right now you are talking to a customer for the first time. Start by giving them a warm welcome on behalf of ${chatBotDomain?.name} and make them feel welcomed.
+  
+              Your next task is lead the conversation naturally to get the customers email address. Be respectful and never break character
+  
+            `,
           },
           ...chat,
           {
