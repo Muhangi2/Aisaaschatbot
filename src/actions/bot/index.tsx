@@ -2,7 +2,7 @@
 
 import { client } from "@/lib/prisma";
 import { extractEmailsFromString, extractURLfromString } from "@/lib/utils";
-import { onRealTimeChat } from '../conversation'
+import { onRealTimeChat } from "../conversation";
 import { clerkClient } from "@clerk/nextjs";
 import { onMailer } from "../mailer";
 import OpenAi from "openai";
@@ -32,12 +32,21 @@ export const onStoreConversations = async (
 };
 
 export const onGetCurrentChatBot = async (id: string) => {
+  console.log(id, "idddd");
+  // Validate UUID format
+
+  var id = "efc980a3-9674-4784-921d-8be53b597b45";
+  const uuidRegex =
+    /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+  if (!id || !uuidRegex.test(id)) {
+    console.error("Invalid UUID:", id);
+    return null;
+  }
+  console.log(id, "iddddfffffffffffffffff");
   try {
-    console.log(id, "idd......................iiiiiiiddd");
     const chatbot = await client.domain.findUnique({
-      where: {
-        id,
-      },
+      where: { id },
       select: {
         helpdesk: true,
         name: true,
@@ -54,21 +63,12 @@ export const onGetCurrentChatBot = async (id: string) => {
       },
     });
 
-    if (chatbot) {
-      return chatbot;
-    }
-    
-    // If no chatbot found, you might want to throw an error or return null
-    return null;
+    return chatbot || null;
   } catch (error) {
-    // Use a safer logging method
-    console.error('Error in onGetCurrentChatBot:', error instanceof Error ? error.message : error);
-    
-    // Optionally, rethrow the error or handle it as needed
-    throw error;
+    console.error("Chatbot retrieval error:", error);
+    return null;
   }
 };
-
 let customerEmail: string | undefined;
 
 export const onAiChatBotAssistant = async (
@@ -78,7 +78,10 @@ export const onAiChatBotAssistant = async (
   message: string
 ) => {
   try {
-    console.log(id, "idd......................iddd");
+    console.log(id, "idddiddd....beforeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+    var id = "efc980a3-9674-4784-921d-8be53b597b45";
+
+    console.log(id, "idddiddd....afterrrrrrrrrrrrrrrrrrrrrrrrrrrr");
     const chatBotDomain = await client.domain.findUnique({
       where: {
         id,
@@ -175,9 +178,9 @@ export const onAiChatBotAssistant = async (
           onRealTimeChat(
             checkCustomer.customer[0].chatRoom[0].id,
             message,
-            'user',
+            "user",
             author
-          )
+          );
 
           if (!checkCustomer.customer[0].chatRoom[0].mailed) {
             const user = await clerkClient.users.getUser(

@@ -1,15 +1,14 @@
-
 import { onAiChatBotAssistant, onGetCurrentChatBot } from '@/actions/bot'
 import { postToParent, pusherClient } from '@/lib/utils'
 import {
   ChatBotMessageProps,
   ChatBotMessageSchema,
 } from '@/schemas/conversation.schema'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useEffect, useRef, useState } from 'react'
+import { zodResolver } from '@hookform/resolvers/zod'  
 import { UploadClient } from '@uploadcare/upload-client'
 
 import { useForm } from 'react-hook-form'
+import { useEffect, useRef, useState } from 'react'
 
 const upload = new UploadClient({
   publicKey: process.env.NEXT_PUBLIC_UPLOAD_CARE_PUBLIC_KEY as string,
@@ -24,26 +23,28 @@ export const useChatBot = () => {
   } = useForm<ChatBotMessageProps>({
     resolver: zodResolver(ChatBotMessageSchema),
   })
+
   const [currentBot, setCurrentBot] = useState<
     | {
-      name: string
-      chatBot: {
-        id: string
-        icon: string | null
-        welcomeMessage: string | null
-        background: string | null
-        textColor: string | null
-        helpdesk: boolean
-      } | null
-      helpdesk: {
-        id: string
-        question: string
-        answer: string
-        domainId: string | null
-      }[]
-    }
+        name: string
+        chatBot: {
+          id: string
+          icon: string | null
+          welcomeMessage: string | null
+          background: string | null
+          textColor: string | null
+          helpdesk: boolean
+        } | null
+        helpdesk: {
+          id: string
+          question: string
+          answer: string
+          domainId: string | null
+        }[]
+      }
     | undefined
   >()
+  
   const messageWindowRef = useRef<HTMLDivElement | null>(null)
   const [botOpened, setBotOpened] = useState<boolean>(false)
   const onOpenChatBot = () => setBotOpened((prev) => !prev)
