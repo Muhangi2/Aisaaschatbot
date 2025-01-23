@@ -114,6 +114,7 @@ export const saveAnswers = async (
 
 export const onGetAllBookingsForCurrentUser = async (clerkId: string) => {
   try {
+    console.log('userrrr', clerkId)
     const bookings = await client.bookings.findMany({
       where: {
         Customer: {
