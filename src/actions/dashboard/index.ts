@@ -139,7 +139,7 @@ export const getUserTransactions = async () => {
   //       select: {
   //         stripeId: true,
   //       },
-  //     })
+  //     }) 
 
   //     if (connectedStripe) {
   //       const transactions = await stripe.charges.list({

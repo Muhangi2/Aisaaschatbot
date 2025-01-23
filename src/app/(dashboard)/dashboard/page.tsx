@@ -1,4 +1,4 @@
-import { getUserAppointments } from '@/actions/appointment'
+import { getUserAppointments } from '@/actions/appointments'
 import {
   getUserBalance,
   getUserClients,
@@ -48,12 +48,12 @@ const Page = async (props: Props) => {
             title="Appointments"
             icon={<CalIcon />}
           />
-          <DashboardCard
+          {/* <DashboardCard
             value={sales || 0}
             sales
             title="Total Sales"
             icon={<DollarSign />}
-          />
+          /> */}
         </div>
         <div className="w-full grid grid-cols-1 lg:grid-cols-2 py-10">
           <div>
@@ -79,7 +79,7 @@ const Page = async (props: Props) => {
               <p className="text-sm">See more</p>
             </div>
             <Separator orientation="horizontal" />
-            {transactions &&
+            {/* {transactions &&
               transactions.data.map((transaction) => (
                 <div
                   className="flex gap-3 w-full justify-between items-center border-b-2 py-5"
@@ -92,7 +92,7 @@ const Page = async (props: Props) => {
                     ${transaction.amount / 100}
                   </p>
                 </div>
-              ))}
+              ))} */}
           </div>
         </div>
       </div>
