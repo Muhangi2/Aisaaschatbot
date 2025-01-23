@@ -34,8 +34,8 @@ export const CustomerTable = ({
 }: CustomerTableProps) => {
   return (
     <DataTable headers={EMAIL_MARKETING_HEADER}>
-      {domains.map((domain) =>
-        domain.customer.map((c) => (
+      {domains?.map((domain) =>
+        domain?.customer.map((c) => (
           <TableRow key={c.id}>
             <TableCell>
               <Card

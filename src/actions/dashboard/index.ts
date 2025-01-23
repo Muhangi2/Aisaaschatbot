@@ -31,37 +31,37 @@ export const getUserClients = async () => {
   }
 }
 
-// export const getUserBalance = async () => {
-//   try {
-//     const user = await currentUser()
-//     if (user) {
-//       const connectedStripe = await client.user.findUnique({
-//         where: {
-//           clerkId: user.id,
-//         },
-//         select: {
-//           stripeId: true,
-//         },
-//       })
+export const getUserBalance = async () => {
+  // try {
+  //   const user = await currentUser()
+  //   if (user) {
+  //     const connectedStripe = await client.user.findUnique({
+  //       where: {
+  //         clerkId: user.id,
+  //       },
+  //       select: {
+  //         stripeId: true,
+  //       },
+  //     })
 
-//       if (connectedStripe) {
-//         const transactions = await stripe.balance.retrieve({
-//           stripeAccount: connectedStripe.stripeId!,
-//         })
+  //     if (connectedStripe) {
+  //       const transactions = await stripe.balance.retrieve({
+  //         stripeAccount: connectedStripe.stripeId!,
+  //       })
 
-//         if (transactions) {
-//           const sales = transactions.pending.reduce((total, next) => {
-//             return total + next.amount
-//           }, 0)
+  //       if (transactions) {
+  //         const sales = transactions.pending.reduce((total, next) => {
+  //           return total + next.amount
+  //         }, 0)
 
-//           return sales / 100
-//         }
-//       }
-//     }
-//   } catch (error) {
-//     console.log(error)
-//   }
-// }
+  //         return sales / 100
+  //       }
+  //     }
+  //   }
+  // } catch (error) {
+  //   console.log(error)
+  // }
+}
 
 export const getUserPlanInfo = async () => {
   try {
@@ -128,29 +128,29 @@ export const getUserTotalProductPrices = async () => {
   }
 }
 
-// export const getUserTransactions = async () => {
-//   try {
-//     const user = await currentUser()
-//     if (user) {
-//       const connectedStripe = await client.user.findUnique({
-//         where: {
-//           clerkId: user.id,
-//         },
-//         select: {
-//           stripeId: true,
-//         },
-//       })
+export const getUserTransactions = async () => {
+  // try {
+  //   const user = await currentUser()
+  //   if (user) {
+  //     const connectedStripe = await client.user.findUnique({
+  //       where: {
+  //         clerkId: user.id,
+  //       },
+  //       select: {
+  //         stripeId: true,
+  //       },
+  //     })
 
-//       if (connectedStripe) {
-//         const transactions = await stripe.charges.list({
-//           stripeAccount: connectedStripe.stripeId!,
-//         })
-//         if (transactions) {
-//           return transactions
-//         }
-//       }
-//     }
-//   } catch (error) {
-//     console.log(error)
-//   }
-// }
+  //     if (connectedStripe) {
+  //       const transactions = await stripe.charges.list({
+  //         stripeAccount: connectedStripe.stripeId!,
+  //       })
+  //       if (transactions) {
+  //         return transactions
+  //       }
+  //     }
+  //   }
+  // } catch (error) {
+  //   console.log(error)
+  // }
+}
