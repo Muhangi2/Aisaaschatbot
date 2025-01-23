@@ -2,7 +2,7 @@
 
 import { client } from "@/lib/prisma";
 import { extractEmailsFromString, extractURLfromString } from "@/lib/utils";
-// import { onRealTimeChat } from '../conversation'
+import { onRealTimeChat } from '../conversation'
 import { clerkClient } from "@clerk/nextjs";
 import { onMailer } from "../mailer";
 import OpenAi from "openai";
@@ -33,6 +33,7 @@ export const onStoreConversations = async (
 
 export const onGetCurrentChatBot = async (id: string) => {
   try {
+    console.log(id, "idd......................iiiiiiiddd");
     const chatbot = await client.domain.findUnique({
       where: {
         id,
@@ -56,8 +57,15 @@ export const onGetCurrentChatBot = async (id: string) => {
     if (chatbot) {
       return chatbot;
     }
+    
+    // If no chatbot found, you might want to throw an error or return null
+    return null;
   } catch (error) {
-    console.log(error);
+    // Use a safer logging method
+    console.error('Error in onGetCurrentChatBot:', error instanceof Error ? error.message : error);
+    
+    // Optionally, rethrow the error or handle it as needed
+    throw error;
   }
 };
 
@@ -164,12 +172,12 @@ export const onAiChatBotAssistant = async (
             author
           );
 
-          // onRealTimeChat(
-          //   checkCustomer.customer[0].chatRoom[0].id,
-          //   message,
-          //   'user',
-          //   author
-          // )
+          onRealTimeChat(
+            checkCustomer.customer[0].chatRoom[0].id,
+            message,
+            'user',
+            author
+          )
 
           if (!checkCustomer.customer[0].chatRoom[0].mailed) {
             const user = await clerkClient.users.getUser(
@@ -370,34 +378,34 @@ export const onAiChatBotAssistant = async (
       }
     }
     const chatCompletion = await openai.chat.completions.create({
-        messages: [
-          {
-            role: "assistant",
-            content: `
+      messages: [
+        {
+          role: "assistant",
+          content: `
             You are a highly knowledgeable and experienced sales representative for a Eliodtech.com that offers a valuable product or service. Your goal is to have a natural, human-like conversation with the customer in order to understand their needs, provide relevant information, and ultimately guide them towards making a purchase or redirect them to a link if they havent provided all relevant information.
             Right now you are talking to a customer for the first time. Start by giving them a warm welcome on behalf of Eliodtech.com and make them feel welcomed.
 
             Your next task is lead the conversation naturally to get the customers email address. Be respectful and never break character
 
           `,
-          },
-          ...chat,
-          {
-            role: "user",
-            content: message,
-          },
-        ],
-        model: "gpt-3.5-turbo",
-      });
+        },
+        ...chat,
+        {
+          role: "user",
+          content: message,
+        },
+      ],
+      model: "gpt-3.5-turbo",
+    });
 
-      if (chatCompletion) {
-        const response = {
-          role: "assistant",
-          content: chatCompletion.choices[0].message.content,
-        };
+    if (chatCompletion) {
+      const response = {
+        role: "assistant",
+        content: chatCompletion.choices[0].message.content,
+      };
 
-        return { response };
-      }
+      return { response };
+    }
   } catch (error) {
     console.log(error);
   }

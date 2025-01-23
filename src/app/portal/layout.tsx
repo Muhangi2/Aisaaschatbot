@@ -17,3 +17,20 @@ const Layout = ({ children }: Props) => {
 };
 
 export default Layout;
+
+
+ {/* {expand ? (
+        <MaxMenu
+          domains={domains}
+          current={page!}
+          onExpand={onExpand}
+          onSignOut={onSignOut}
+        />
+      ) : (
+        <MinMenu
+          domains={domains}
+          onShrink={onExpand}
+          current={page!}
+          onSignOut={onSignOut}
+        />
+      )} */}

@@ -17,7 +17,7 @@ export const getUserClients = async () => {
         where: {
           Domain: {
             User: {
-              clerkId: user.id,
+              clerkId: user?.id,
             },
           },
         },

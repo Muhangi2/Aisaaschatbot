@@ -1,6 +1,6 @@
 
 import { onAiChatBotAssistant, onGetCurrentChatBot } from '@/actions/bot'
-// import { postToParent, pusherClient } from '@/lib/utils'
+import { postToParent, pusherClient } from '@/lib/utils'
 import {
   ChatBotMessageProps,
   ChatBotMessageSchema,
@@ -26,22 +26,22 @@ export const useChatBot = () => {
   })
   const [currentBot, setCurrentBot] = useState<
     | {
-        name: string
-        chatBot: {
-          id: string
-          icon: string | null
-          welcomeMessage: string | null
-          background: string | null
-          textColor: string | null
-          helpdesk: boolean
-        } | null
-        helpdesk: {
-          id: string
-          question: string
-          answer: string
-          domainId: string | null
-        }[]
-      }
+      name: string
+      chatBot: {
+        id: string
+        icon: string | null
+        welcomeMessage: string | null
+        background: string | null
+        textColor: string | null
+        helpdesk: boolean
+      } | null
+      helpdesk: {
+        id: string
+        question: string
+        answer: string
+        domainId: string | null
+      }[]
+    }
     | undefined
   >()
   const messageWindowRef = useRef<HTMLDivElement | null>(null)
@@ -69,14 +69,14 @@ export const useChatBot = () => {
     onScrollToBottom()
   }, [onChats, messageWindowRef])
 
-  // useEffect(() => {
-  //   postToParent(
-  //     JSON.stringify({
-  //       width: botOpened ? 550 : 80,
-  //       height: botOpened ? 800 : 80,
-  //     })
-  //   )
-  // }, [botOpened])
+  useEffect(() => {
+    postToParent(
+      JSON.stringify({
+        width: botOpened ? 550 : 80,
+        height: botOpened ? 800 : 80,
+      })
+    )
+  }, [botOpened])
 
   let limitRequest = 0
 
@@ -212,24 +212,24 @@ export const useRealTime = (
 ) => {
   const counterRef = useRef(1)
 
-//   useEffect(() => {
-//     pusherClient.subscribe(chatRoom)
-//     pusherClient.bind('realtime-mode', (data: any) => {
-//       console.log('✅', data)
-//       if (counterRef.current !== 1) {
-//         setChats((prev: any) => [
-//           ...prev,
-//           {
-//             role: data.chat.role,
-//             content: data.chat.message,
-//           },
-//         ])
-//       }
-//       counterRef.current += 1
-//     })
-//     return () => {
-//       pusherClient.unbind('realtime-mode')
-//       pusherClient.unsubscribe(chatRoom)
-//     }
-//   }, [])
+  useEffect(() => {
+    pusherClient.subscribe(chatRoom)
+    pusherClient.bind('realtime-mode', (data: any) => {
+      console.log('✅', data)
+      if (counterRef.current !== 1) {
+        setChats((prev: any) => [
+          ...prev,
+          {
+            role: data.chat.role,
+            content: data.chat.message,
+          },
+        ])
+      }
+      counterRef.current += 1
+    })
+    return () => {
+      pusherClient.unbind('realtime-mode')
+      pusherClient.unsubscribe(chatRoom)
+    }
+  }, [])
 }
