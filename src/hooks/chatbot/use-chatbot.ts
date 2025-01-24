@@ -4,7 +4,7 @@ import {
   ChatBotMessageProps,
   ChatBotMessageSchema,
 } from '@/schemas/conversation.schema'
-import { zodResolver } from '@hookform/resolvers/zod'  
+import { zodResolver } from '@hookform/resolvers/zod'
 import { UploadClient } from '@uploadcare/upload-client'
 
 import { useForm } from 'react-hook-form'
@@ -26,25 +26,25 @@ export const useChatBot = () => {
 
   const [currentBot, setCurrentBot] = useState<
     | {
-        name: string
-        chatBot: {
-          id: string
-          icon: string | null
-          welcomeMessage: string | null
-          background: string | null
-          textColor: string | null
-          helpdesk: boolean
-        } | null
-        helpdesk: {
-          id: string
-          question: string
-          answer: string
-          domainId: string | null
-        }[]
-      }
+      name: string
+      chatBot: {
+        id: string
+        icon: string | null
+        welcomeMessage: string | null
+        background: string | null
+        textColor: string | null
+        helpdesk: boolean
+      } | null
+      helpdesk: {
+        id: string
+        question: string
+        answer: string
+        domainId: string | null
+      }[]
+    }
     | undefined
   >()
-  
+
   const messageWindowRef = useRef<HTMLDivElement | null>(null)
   const [botOpened, setBotOpened] = useState<boolean>(false)
   const onOpenChatBot = () => setBotOpened((prev) => !prev)
@@ -99,8 +99,9 @@ export const useChatBot = () => {
 
   useEffect(() => {
     window.addEventListener('message', (e) => {
-      console.log(e.data)
+      console.log(e.data, "useeffect datatatatataaaa")
       const botid = e.data
+      console.log(botid, "botiddddddddddddddddddd")
       if (limitRequest < 1 && typeof botid == 'string') {
         onGetDomainChatBot(botid)
         limitRequest++

@@ -13,7 +13,7 @@ export const getUserClients = async () => {
   try {
     const user = await currentUser()
     if (user) {
-      const clients = await client.customer.count({
+      const clients = await client?.customer.count({
         where: {
           Domain: {
             User: {
