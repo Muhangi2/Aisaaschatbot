@@ -38,7 +38,7 @@ export const onGetAllCustomers = async (id: string) => {
     if (customers) {
       return customers
     }
-  } catch (error) {}
+  } catch (error) { }
 }
 
 export const onGetAllCampaigns = async (id: string) => {
@@ -106,8 +106,9 @@ export const onSaveEmailTemplate = async (
         template,
       },
     })
-
-    return { status: 200, message: 'Email template created' }
+    if (newTemplate) {
+      return { status: 200, message: 'Email template created' }
+    }
   } catch (error) {
     console.log(error)
   }
@@ -131,7 +132,7 @@ export const onAddCustomersToEmail = async (
     if (customerAdd) {
       return { status: 200, message: 'Customer added to campaign' }
     }
-  } catch (error) {}
+  } catch (error) { }
 }
 
 export const onBulkMailer = async (email: string[], campaignId: string) => {

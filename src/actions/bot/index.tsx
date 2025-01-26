@@ -175,6 +175,7 @@ export const onAiChatBotAssistant = async (
             author
           );
 
+          //On realtime chat with the customer
           onRealTimeChat(
             checkCustomer.customer[0].chatRoom[0].id,
             message,
