@@ -2,7 +2,6 @@ import InfoBar from "@/components/infobar";
 import BillingSettings from "@/components/settings/billing-settings";
 import ChangePassword from "@/components/settings/change-password";
 import DarkModetoggle from "@/components/settings/dark-mode";
-// import BillingSettings from "@/components/forms/settings/billings-settings";
 import React from "react";
 
 type Props = {};
