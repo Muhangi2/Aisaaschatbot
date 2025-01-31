@@ -50,6 +50,7 @@ export const onGetConversationMode = async (id: string) => {
 }
 
 export const onGetDomainChatRooms = async (id: string) => {
+    console.log(id, "iddddd dddddddddddddd")
     try {
         const domains = await client.domain.findUnique({
             where: {

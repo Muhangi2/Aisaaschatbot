@@ -26,7 +26,7 @@ const AiChatBot = (props: Props) => {
 
   return (
     <div className="h-screen flex flex-col justify-end items-end gap-4">
-      <BotWindow
+      {/* <BotWindow
           errors={errors}
           setChat={setOnChats}
           realtimeMode={onRealTime}
@@ -40,7 +40,7 @@ const AiChatBot = (props: Props) => {
           register={register}
           onChat={onStartChatting}
           onResponding={onAiTyping}
-        />
+        /> */}
       {/* {botOpened && (
         <BotWindow
           errors={errors}
