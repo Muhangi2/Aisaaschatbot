@@ -9,6 +9,7 @@ import { UploadClient } from '@uploadcare/upload-client'
 
 import { useForm } from 'react-hook-form'
 import { useEffect, useRef, useState } from 'react'
+import { any } from 'zod'
 
 const upload = new UploadClient({
   publicKey: process.env.NEXT_PUBLIC_UPLOAD_CARE_PUBLIC_KEY as string,
@@ -83,7 +84,7 @@ export const useChatBot = () => {
 
   const onGetDomainChatBot = async (id: string) => {
     setCurrentBotId(id)
-    const chatbot = await onGetCurrentChatBot(id)
+    const chatbot:any = await onGetCurrentChatBot(id)
     if (chatbot) {
       setOnChats((prev) => [
         ...prev,
@@ -127,7 +128,7 @@ export const useChatBot = () => {
 
       console.log('🟡 RESPONSE FROM UC', uploaded.uuid)
       setOnAiTyping(true)
-      const response = await onAiChatBotAssistant(
+      const response:any = await onAiChatBotAssistant(
         currentBotId!,
         onChats,
         'user',
@@ -162,7 +163,7 @@ export const useChatBot = () => {
 
       setOnAiTyping(true)
 
-      const response = await onAiChatBotAssistant(
+      const response:any = await onAiChatBotAssistant(
         currentBotId!,
         onChats,
         'user',
