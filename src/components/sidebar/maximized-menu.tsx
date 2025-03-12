@@ -20,7 +20,7 @@ type Props = {
 };
 
 const MaxMenu = ({ current, domains, onExpand, onSignOut }: Props) => {
-  console.log(SIDE_BAR_MENU, "SIDEBAR MENUUUUUUUUUUUU");
+  // console.log(SIDE_BAR_MENU, "SIDEBAR MENUUUUUUUUUUUU");
   return (
     <div className="py-3 px-4 flex flex-col h-full ">
       <div className="flex justify-between items-center ">

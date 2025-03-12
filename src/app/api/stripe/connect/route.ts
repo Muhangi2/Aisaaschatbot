@@ -1,3 +1,7 @@
+// This is a placeholder export to make TypeScript recognize this as a module
+export const runtime = "edge"
+
+
 // import { client } from '@/lib/prisma'
 // import { currentUser } from '@clerk/nextjs'
 // import { NextResponse } from 'next/server'

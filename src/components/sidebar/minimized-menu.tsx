@@ -25,7 +25,7 @@ export const MinMenu = ({
   onSignOut,
   domains,
 }: MinMenuProps) => {
-  console.log(SIDE_BAR_MENU, "SIDE_BAR_MENU data"); // Debugging
+  // console.log(SIDE_BAR_MENU, "SIDE_BAR_MENU data"); // Debugging
 
   return (
     <div className="p-3 flex flex-col items-center h-full bg-gray-900 text-white">

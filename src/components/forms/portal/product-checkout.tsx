@@ -84,15 +84,15 @@ const PortalSteps = ({
 
 
   if (step == 2 && type == 'Payment') {
-    return (
-      <PaymentCheckout
-        products={products}
-        stripeId={stripeId}
-        onBack={onBack}
-        onNext={onNext}
-        amount={amount}
-      />
-    )
+    // return (
+    //   <PaymentCheckout
+    //     products={products}
+    //     stripeId={stripeId}
+    //     onBack={onBack}
+    //     onNext={onNext}
+    //     amount={amount}
+    //   />
+    // )
   }
 
   return (

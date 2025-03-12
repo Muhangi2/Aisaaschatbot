@@ -26,18 +26,20 @@ function NavBar() {
         <li>Features</li>
         <li>Contact us</li>
       </ul>
+      <ul className="gap-5 justify-between self-stretch my-auto text-sm leading-5 text-neutral-700 max-md:flex-wrap max-md:max-w-full font-normal hidden md:flex">
       <Link
         href="/auth/sign-in"
-        className="bg-orange px-1 py-2 rounded-sm text-yelllow-600"
+        className="bg-orange px-4 py-2 rounded-sm text-yelllow-600"
       >
-        Free Trial
+       SigIn
       </Link>
       <Link
         href="/auth/sign-up"
-        className="bg-orange px-1 py-2 rounded-sm text-yelllow-600"
+        className="bg-orange px-4 py-2 rounded-sm text-yelllow-600"
       >
-        Free Trial
+        SignUp
       </Link>
+      </ul>
       <Link
         href="/dashboard"
         className="bg-orange px-4 py-2 rounded-sm text-yelllow-600"
