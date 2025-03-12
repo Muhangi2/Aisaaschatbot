@@ -27,6 +27,18 @@ function NavBar() {
         <li>Contact us</li>
       </ul>
       <Link
+        href="/auth/sign-in"
+        className="bg-orange px-1 py-2 rounded-sm text-yelllow-600"
+      >
+        Free Trial
+      </Link>
+      <Link
+        href="/auth/sign-up"
+        className="bg-orange px-1 py-2 rounded-sm text-yelllow-600"
+      >
+        Free Trial
+      </Link>
+      <Link
         href="/dashboard"
         className="bg-orange px-4 py-2 rounded-sm text-yelllow-600"
       >
