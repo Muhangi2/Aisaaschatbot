@@ -26,22 +26,8 @@ const AiChatBot = (props: Props) => {
 
   return (
     <div className="h-screen flex flex-col justify-end items-end gap-4">
-      <BotWindow
-          errors={errors}
-          setChat={setOnChats}
-          realtimeMode={onRealTime}
-          helpdesk={currentBot?.helpdesk!}
-          domainName={currentBot?.name!}
-          ref={messageWindowRef}
-          help={currentBot?.chatBot?.helpdesk}
-          theme={currentBot?.chatBot?.background}
-          textColor={currentBot?.chatBot?.textColor}
-          chats={onChats}
-          register={register}
-          onChat={onStartChatting}
-          onResponding={onAiTyping}
-        />
-      {/* {botOpened && (
+      
+      {botOpened && (
         <BotWindow
           errors={errors}
           setChat={setOnChats}
@@ -57,7 +43,7 @@ const AiChatBot = (props: Props) => {
           onChat={onStartChatting}
           onResponding={onAiTyping}
         />
-      )} */}
+      )}
       <div
         className={cn(
           'rounded-full relative cursor-pointer shadow-md w-20 h-20 flex items-center justify-center bg-grandis',
