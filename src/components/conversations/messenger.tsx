@@ -17,7 +17,16 @@ const Messenger = (props: Props) => {
     chatRoom,
     onHandleSentMessage,
     register,
-  } = useChatWindow()
+  } = useChatWindow();
+  
+  console.log({
+    messageWindowRef,
+    chats,
+    loading,
+    chatRoom,
+    onHandleSentMessage,
+    register,
+  },"detailssssssssssssssssssssssssssss");
   
 
   return (

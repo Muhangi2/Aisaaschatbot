@@ -157,10 +157,11 @@ import {
           values.content,
           'assistant'
         )
-        //WIP: Remove this line
+        console.log(message,"messageeeeeeeeeeeeeeeeeeeeeeeee")
+        
         if (message) {
-          //remove this
-          setChats((prev) => [...prev, message.message[0]])
+   
+          // setChats((prev) => [...prev, message.message[0]])
   
           await onRealTimeChat(
             chatRoom!,

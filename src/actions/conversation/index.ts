@@ -123,7 +123,6 @@ export const onGetChatMessages = async (id: string) => {
     }
 }
 
-
 export const onViewUnReadMessages = async (id: string) => {
 
     try {
@@ -146,7 +145,10 @@ export const onRealTimeChat = async (
     id: string,
     role: 'assistant' | 'user'
 ) => {
-    console.log(chatroomId,"chatroomid")
+    console.log(chatroomId,"chatroomidddddddddddddddddddddddd")
+    console.log(message,"messageeeeeeeeeeeeeeeeeee")
+    console.log(id,"messageeeeeeeeeeeeeeeeeee")
+    console.log(role,"messageeeeeeeeeeeeeeeeeee")
     pusherServer.trigger(chatroomId, 'realtime-mode', {
         chat: {
             message,
