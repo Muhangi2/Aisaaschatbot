@@ -38,18 +38,30 @@ export const extractUUIDFromString = (url: string) => {
   )
 }
 
+// export const pusherServer = new PusherServer({
+//   appId: process.env.PUSHER_APP_ID as string,
+//   key: process.env.NEXT_PUBLIC_PUSHER_APP_KEY as string,
+//   secret: process.env.PUSHER_APP_SECRET as string,
+//   cluster: 'mt1',
+//   useTLS: true,
+// })
 export const pusherServer = new PusherServer({
-  appId: process.env.NEXT_PUBLIC_PUSHER_APP_ID as string,
-  key: process.env.NEXT_PUBLIC_PUSHER_APP_KEY as string,
-  secret: process.env.NEXT_PUBLIC_PUSHER_APP_SECRET as string,
-  cluster: process.env.NEXT_PUBLIC_PUSHER_APP_CLUSTOR as string,
+  appId:"1931847",
+  key :"640b7269f97902ad5386",
+  secret : "37c1f8948b74de6969c7",
+  cluster : "mt1",
+  // appId: process.env.PUSHER_APP_ID as string,
+  // key: process.env.NEXT_PUBLIC_PUSHER_APP_KEY as string,
+  // secret: process.env.PUSHER_APP_SECRET as string,
+  // cluster: 'mt1',
   useTLS: true,
 })
 
+
 export const pusherClient = new PusherClient(
-  process.env.NEXT_PUBLIC_PUSHER_APP_KEY as string,
+  "640b7269f97902ad5386",
   {
-    cluster: process.env.NEXT_PUBLIC_PUSHER_APP_CLUSTOR as string,
+    cluster: 'mt1',
   }
 )
 

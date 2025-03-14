@@ -50,7 +50,7 @@ export const onGetConversationMode = async (id: string) => {
 }
 
 export const onGetDomainChatRooms = async (id: string) => {
-    console.log(id, "iddddd dddddddddddddd")
+   
     try {
         const domains = await client.domain.findUnique({
             where: {
@@ -91,6 +91,7 @@ export const onGetDomainChatRooms = async (id: string) => {
 }
 
 export const onGetChatMessages = async (id: string) => {
+   
     try {
         const messages = await client.chatRoom.findMany({
             where: {
@@ -123,8 +124,8 @@ export const onGetChatMessages = async (id: string) => {
 }
 
 
-
 export const onViewUnReadMessages = async (id: string) => {
+
     try {
         await client.chatMessage.updateMany({
             where: {
@@ -145,6 +146,7 @@ export const onRealTimeChat = async (
     id: string,
     role: 'assistant' | 'user'
 ) => {
+    console.log(chatroomId,"chatroomid")
     pusherServer.trigger(chatroomId, 'realtime-mode', {
         chat: {
             message,
