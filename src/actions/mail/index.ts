@@ -119,7 +119,7 @@ export const onAddCustomersToEmail = async (
   id: string
 ) => {
   try {
-    console.log(customers, id)
+
     const customerAdd = await client.campaign.update({
       where: {
         id,

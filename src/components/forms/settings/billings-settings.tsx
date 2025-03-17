@@ -17,7 +17,7 @@ const BillingSettings = async (props: Props) => {
   )?.features;
   if (!planFeatures) return;
 
-  console.log(planFeatures);
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
       <div className="lg:col-span-1">

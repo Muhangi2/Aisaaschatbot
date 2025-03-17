@@ -100,9 +100,9 @@ export const useChatBot = () => {
 
   useEffect(() => {
     window.addEventListener('message', (e) => {
-      console.log(e.data, "useeffect datatatatataaaa")
+
       const botid = e.data
-      console.log(botid, "botiddddddddddddddddddd")
+
       if (limitRequest < 1 && typeof botid == 'string') {
         onGetDomainChatBot(botid)
         limitRequest++
@@ -111,10 +111,10 @@ export const useChatBot = () => {
   }, [])
 
   const onStartChatting = handleSubmit(async (values) => {
-    console.log('ALL VALUES', values)
+
 
     if (values.image.length) {
-      console.log('IMAGE fROM ', values.image[0])
+
       const uploaded = await upload.uploadFile(values.image[0])
       if (!onRealTime?.mode) {
         setOnChats((prev: any) => [
@@ -126,7 +126,7 @@ export const useChatBot = () => {
         ])
       }
 
-      console.log('🟡 RESPONSE FROM UC', uploaded.uuid)
+
       setOnAiTyping(true)
       const response:any = await onAiChatBotAssistant(
         currentBotId!,
@@ -218,7 +218,7 @@ export const useRealTime = (
   useEffect(() => {
     pusherClient.subscribe(chatRoom)
     pusherClient.bind('realtime-mode', (data: any) => {
-      console.log('✅', data)
+
       if (counterRef.current !== 1) {
         setChats((prev: any) => [
           ...prev,

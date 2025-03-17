@@ -157,7 +157,7 @@ import {
           values.content,
           'assistant'
         )
-        console.log(message,"messageeeeeeeeeeeeeeeeeeeeeeeee")
+       
         
         if (message) {
    

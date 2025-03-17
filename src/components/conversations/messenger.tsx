@@ -19,15 +19,6 @@ const Messenger = (props: Props) => {
     register,
   } = useChatWindow();
   
-  console.log({
-    messageWindowRef,
-    chats,
-    loading,
-    chatRoom,
-    onHandleSentMessage,
-    register,
-  },"detailssssssssssssssssssssssssssss");
-  
 
   return (
     <div className="flex-1 flex flex-col h-0 relative">

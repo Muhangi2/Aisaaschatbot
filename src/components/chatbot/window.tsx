@@ -70,10 +70,7 @@ export const BotWindow = forwardRef<HTMLDivElement, Props>(
     },
     ref
   ) => {
-    console.log(helpdesk, "onResponding......");
-    console.log(onResponding, "onResponding......");
-    console.log(chats, "onResponding......");
-    console.log(errors);
+   
     return (
       <div className="h-[670px] w-[450px] flex flex-col  rounded-xl mr-[80px] border-[1px]  overflow-scroll ">
         <div className="flex justify-between px-4 pt-4 ">

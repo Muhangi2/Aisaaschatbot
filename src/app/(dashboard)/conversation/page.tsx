@@ -9,7 +9,7 @@ type Props = {}
 
 const ConversationPage = async (props: Props) => {
   const domains = await onGetAllAccountDomains()
-  console.log(domains,"domainssssssss")
+
   return (
     <div className="w-full h-full flex">
       <ConversationMenu domains={domains?.domains} />

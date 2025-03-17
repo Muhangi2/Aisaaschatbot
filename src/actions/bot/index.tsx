@@ -32,7 +32,7 @@ export const onStoreConversations = async (
 }
 
 export const onGetCurrentChatBot = async (id: string) => {
-  console.log(id ,"idddddd")
+
   try {
     const chatbot = await client.domain.findUnique({
       where: {
@@ -53,7 +53,7 @@ export const onGetCurrentChatBot = async (id: string) => {
         },
       },
     })
-    console.log(chatbot,"chatBotDomainnnnnnnnnnnnnnnn")
+
     if (chatbot) {
       return chatbot
     }
@@ -70,7 +70,7 @@ export const onAiChatBotAssistant = async (
   author: 'user',
   message: string
 ) => {
-  console.log(id,"iddddddddddddddddddddddddddddddddddddddddddddddddd")
+
   try {
     const chatBotDomain = await client.domain.findUnique({
       where: {
@@ -88,7 +88,7 @@ export const onAiChatBotAssistant = async (
         },
       },
     })
-    // console.log(chatBotDomain,"chatBotDomainnnnn")
+   
     if (chatBotDomain) {
       const extractedEmail = extractEmailsFromString(message)
       if (extractedEmail) {
@@ -148,7 +148,7 @@ export const onAiChatBotAssistant = async (
             },
           })
           if (newCustomer) {
-            console.log('new customer made')
+
             const response = {
               role: 'assistant',
               content: `Welcome aboard ${
@@ -339,7 +339,7 @@ export const onAiChatBotAssistant = async (
           return { response }
         }
       }
-      console.log('No customer')
+
       const chatCompletion = await openai.chat.completions.create({
         messages: [
           {
