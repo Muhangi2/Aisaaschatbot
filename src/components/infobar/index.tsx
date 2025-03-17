@@ -8,7 +8,7 @@ type Props = {};
 
 const InfoBar = (props: Props) => {
   return (
-    <div className="flex w-full justify-between items-center py-1 mb-8 bg-green-500">
+    <div className="flex w-full justify-between items-center py-1 mb-8 ">
       <BreadCrumb />
       <div className="flex gap-3 items-center">
         <div>
