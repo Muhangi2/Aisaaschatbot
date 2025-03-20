@@ -44,7 +44,7 @@ const MaxMenu = ({ current, domains, onExpand, onSignOut }: Props) => {
           <DomainMenu domains={domains} />
         </div>
         <div className="flex flex-col">
-          <p className="text-xs text-white mb-3">OPTIONS</p>
+          {/* <p className="text-xs text-white mb-3">OPTIONS</p> */}
           <MenuItem
             size="max"
             label="Sign out"

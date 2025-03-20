@@ -47,7 +47,7 @@ const Messenger = (props: Props) => {
       </div>
       <form
         onSubmit={onHandleSentMessage}
-        className="flex px-3 pt-3 pb-10 flex-col backdrop-blur-sm bg-muted w-full bg-green-500"
+        className="flex px-3 pt-3 pb-10 flex-col backdrop-blur-sm bg-muted w-full "
       >
         <div className="flex justify-between">
           <Input
