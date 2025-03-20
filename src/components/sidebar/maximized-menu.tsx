@@ -1,5 +1,5 @@
 import { SIDE_BAR_MENU } from "@/constants/menu";
-import { LogOut, Menu, MonitorSmartphone } from "lucide-react";
+import { LogOut, Menu } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 import DomainMenu from "./domain-menu";
@@ -14,16 +14,15 @@ type Props = {
         id: string;
         name: string;
         icon: string | null;
-      }[] 
-    | null 
+      }[]
+    | null
     | undefined;
 };
 
 const MaxMenu = ({ current, domains, onExpand, onSignOut }: Props) => {
-  // console.log(SIDE_BAR_MENU, "SIDEBAR MENUUUUUUUUUUUU");
   return (
-    <div className="py-3 px-4 flex flex-col h-full ">
-      <div className="flex justify-between items-center ">
+    <div className="py-3 px-4 flex flex-col h-full w-full overflow-hidden">
+      <div className="flex justify-between items-center " onClick={onExpand}>
         <Image
           src="/images/logo.png"
           alt="LOGO"
@@ -32,8 +31,8 @@ const MaxMenu = ({ current, domains, onExpand, onSignOut }: Props) => {
           className="opacity-100"
         />
         <Menu
-          className="cursor-pointer text-white w-6 h-6"
-          onClick={onExpand}
+          className="cursor-pointer text-white w-6 h-6 shrink-0"
+         
         />
       </div>
       <div className="flex flex-col justify-between h-full pt-10 ">
@@ -51,11 +50,6 @@ const MaxMenu = ({ current, domains, onExpand, onSignOut }: Props) => {
             label="Sign out"
             icon={<LogOut className="text-white w-6 h-6" />}
             onSignOut={onSignOut}
-          />
-          <MenuItem
-            size="max"
-            label="Mobile App"
-            icon={<MonitorSmartphone className="text-white w-6 h-6" />}
           />
         </div>
       </div>

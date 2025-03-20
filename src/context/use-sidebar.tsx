@@ -12,7 +12,7 @@ import {
 import { useClerk } from "@clerk/nextjs";
 
 const useSideBar = () => {
-  const [expand, setExpand] = useState<boolean | undefined>(undefined);
+  const [expand, setExpand] = useState<boolean | undefined>(true);
   const router = useRouter();
   const pathname = usePathname();
   const { toast } = useToast();
