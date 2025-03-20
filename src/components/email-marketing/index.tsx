@@ -105,20 +105,20 @@ const EmailMarketing = ({ campaign, domains, subscription }: Props) => {
             </CardDescription>
           </Card>
         </div>
-        <div className="flex flex-col items-end mt-5 gap-3">
+        <div className="flex flex-col items-end mt-5 gap-3 ">
           {campaign &&
             campaign.map((camp, i) => (
               <Card
                 key={camp.id}
                 className={cn(
-                  "p-5 min-w-[600px] cursor-pointer",
+                  "p-5 min-w-[600px] cursor-pointer ",
                   campaignId == camp.id ? "bg-gray-50" : ""
                 )}
                 onClick={() => onSelectCampaign(camp.id)}
               >
                 <Loader loading={processing}>
-                  <CardContent className="p-0 flex flex-col items-center gap-3">
-                    <div className="flex w-full justify-between items-center">
+                  <CardContent className="p-0 flex flex-col items-center gap-3 ">
+                    <div className="flex w-full justify-between items-center ">
                       <div className="flex gap-2 items-center">
                         <CalIcon />
                         <CardDescription>
@@ -133,7 +133,7 @@ const EmailMarketing = ({ campaign, domains, subscription }: Props) => {
                         </CardDescription>
                       </div>
                     </div>
-                    <div className="flex w-full justify-between items-center">
+                    <div className="flex w-full justify-between items-center ">
                       <CardTitle className="text-xl">{camp.name}</CardTitle>
                       <div className="flex gap-3">
                         <Modal

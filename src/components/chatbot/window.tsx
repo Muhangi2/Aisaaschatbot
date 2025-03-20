@@ -83,12 +83,15 @@ export const BotWindow = forwardRef<HTMLDivElement, Props>(
                 Sales Rep - Eliodtech
               </h3>
               <p className="text-xs">{domainName?.split(".com")[0]}</p>
+              <div className="bg-green-400">
               {realtimeMode?.mode && (
                 <RealTimeMode
                   setChats={setChat}
                   chatRoomId={realtimeMode.chatroom}
                 />
               )}
+              </div>
+             
             </div>
           </div>
           <div className="relative w-10 h-10">
