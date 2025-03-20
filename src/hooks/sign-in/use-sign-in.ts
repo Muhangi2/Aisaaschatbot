@@ -19,14 +19,12 @@ export const useSignInForm = () => {
   const onHandleSubmit = methods.handleSubmit(
     async (values: UserLoginProps) => {
       if (!isLoaded) return
-
       try {
         setLoading(true)
         const authenticated = await signIn.create({
           identifier: values.email,
           password: values.password,
         })
-
         if (authenticated.status === 'complete') {
           await setActive({ session: authenticated.createdSessionId })
           toast({
@@ -34,6 +32,14 @@ export const useSignInForm = () => {
             description: 'Welcome back!',
           })
           router.push('/dashboard')
+          // The loading state is never reset here
+        } else {
+          // Handle incomplete authentication
+          setLoading(false)
+          toast({
+            title: 'Error',
+            description: 'Authentication incomplete',
+          })
         }
       } catch (error: any) {
         setLoading(false)
