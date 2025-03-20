@@ -31,10 +31,13 @@ export const useSignInForm = () => {
             title: 'Success',
             description: 'Welcome back!',
           })
-          router.push('/dashboard')
-          // The loading state is never reset here
-        } else {
-          // Handle incomplete authentication
+          setLoading(false)
+          
+          // Use replace with a slight delay to ensure Clerk session is fully established
+          setTimeout(() => {
+            router.replace('/dashboard')
+          }, 100)
+        }else {
           setLoading(false)
           toast({
             title: 'Error',
@@ -49,9 +52,12 @@ export const useSignInForm = () => {
             description: 'email/password is incorrect try again',
           })
       }
+      // Add a fallback to ensure loading state is reset
+      finally {
+        setLoading(false)
+      }
     }
   )
-
   return {
     methods,
     onHandleSubmit,

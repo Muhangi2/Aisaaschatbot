@@ -28,7 +28,7 @@ export const MinMenu = ({
 
 
   return (
-    <div className="p-3 flex flex-col items-center h-full bg-gray-900 text-white">
+    <div className="p-3 flex flex-col items-center h-full bg-gray-900 text-white ">
       {/* Menu Logo */}
       <span className="cursor-pointer">
         <MenuLogo onClick={onShrink} />
@@ -49,18 +49,18 @@ export const MinMenu = ({
         </div>
 
         {/* Options */}
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center bg-green-500">
           <MenuItem
             size="min"
             label="Sign out"
             icon={<LogOut className="w-6 h-6" />}
             onSignOut={onSignOut}
           />
-          <MenuItem
+          {/* <MenuItem
             size="min"
             label="Mobile App"
             icon={<MonitorSmartphone className="w-6 h-6" />}
-          />
+          /> */}
         </div>
       </div>
     </div>

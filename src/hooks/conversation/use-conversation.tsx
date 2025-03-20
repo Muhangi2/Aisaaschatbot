@@ -158,7 +158,7 @@ import {
           'assistant'
         )
        
-        
+        console.log(message,"messsaaageeeee")
         if (message) {
    
           // setChats((prev) => [...prev, message.message[0]])

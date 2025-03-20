@@ -145,7 +145,10 @@ export const onRealTimeChat = async (
     id: string,
     role: 'assistant' | 'user'
 ) => {
-
+   console.log(chatroomId,"chatroomId")
+   console.log(message,"message");
+   console.log(id,"id")
+   console.log(role,"role")
     pusherServer.trigger(chatroomId, 'realtime-mode', {
         chat: {
             message,
