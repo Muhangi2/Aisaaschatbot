@@ -15,7 +15,7 @@ export const onMailer = async(email: string) => {
   const mailOptions = {
     to: email,
     subject: 'Realtime Support',
-    text: 'One of your customers on EliodAi, just switched to realtime mode',
+    text: 'One of your customers on TeraSales Ai, just switched to realtime mode',
   }
 
   transporter.sendMail(mailOptions, function (error, info) {

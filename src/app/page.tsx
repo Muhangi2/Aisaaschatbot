@@ -16,6 +16,7 @@ import Link from "next/link";
 import parse from "html-react-parser";
 import { getMonthName } from "@/lib/utils";
 
+
 // Define pricingCards based on the screenshot
 const pricingCards = [
   {
@@ -68,12 +69,17 @@ export default async function Home() {
                 Unleash TeraSales AI on your website with a simple code snippet and watch your conversions soar.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
+              <Link href="/auth/sign-in">
                 <Button className="bg-gradient-to-r from-[#1e3a8a] to-[#60a5fa] hover:from-[#1e2a78] hover:to-[#3b82f6] font-bold text-white px-8 py-6 rounded-full text-lg shadow-lg hover:shadow-xl transition-all">
                   Get Started
                 </Button>
+                </Link>
+
+                <Link href="/auth/sign-in">
                 <Button variant="outline" className="border-[#eab308] text-[#eab308] hover:bg-[#eab308]/10 font-bold px-8 py-6 rounded-full text-lg shadow-md hover:shadow-lg transition-all">
                   Explore Features
                 </Button>
+                </Link>
               </div>
             </div>
             <div className="relative mt-10 lg:mt-0">

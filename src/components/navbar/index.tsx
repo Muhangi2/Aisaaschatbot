@@ -39,25 +39,25 @@ function NavBar() {
                 Pricing
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link href="/news" className="hover:text-[#eab308] transition-colors">
                 News Room
               </Link>
-            </li>
+            </li> */}
             <li>
               <Link href="/features" className="hover:text-[#eab308] transition-colors">
                 Features
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link href="/blog" className="hover:text-[#eab308] transition-colors">
                 Blog
               </Link>
-            </li>
+            </li> */}
             <li>
-              <Link href="/support" className="hover:text-[#eab308] transition-colors">
+              {/* <Link href="/support" className="hover:text-[#eab308] transition-colors">
                 Support
-              </Link>
+              </Link> */}
             </li>
             <li>
               <Link href="/contact" className="hover:text-[#eab308] transition-colors">
