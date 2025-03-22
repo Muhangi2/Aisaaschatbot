@@ -9,7 +9,7 @@ function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-gradient-to-r from-[#1e3a8a] to-[#60a5fa] text-white shadow-lg">
+    <header className="sticky top-0 z-50 bg-gradient-to-r from-[#1e3a8a]/10 to-[#eab308]/10 text-[#1e3a8a] shadow-lg">
       <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
         <Link href="/" className="flex items-center">
           <Image
@@ -30,6 +30,11 @@ function NavBar() {
               </Link>
             </li>
             <li>
+              <Link href="/about" className="hover:text-[#eab308] transition-colors">
+                About
+              </Link>
+            </li>
+            <li>
               <Link href="/pricing" className="hover:text-[#eab308] transition-colors">
                 Pricing
               </Link>
@@ -42,6 +47,16 @@ function NavBar() {
             <li>
               <Link href="/features" className="hover:text-[#eab308] transition-colors">
                 Features
+              </Link>
+            </li>
+            <li>
+              <Link href="/blog" className="hover:text-[#eab308] transition-colors">
+                Blog
+              </Link>
+            </li>
+            <li>
+              <Link href="/support" className="hover:text-[#eab308] transition-colors">
+                Support
               </Link>
             </li>
             <li>
@@ -60,7 +75,7 @@ function NavBar() {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden p-2 text-white"
+          className="md:hidden p-2 text-[#1e3a8a]"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label="Toggle menu"
         >
@@ -70,7 +85,7 @@ function NavBar() {
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className="md:hidden py-4 px-6 bg-gradient-to-b from-[#1e3a8a] to-[#60a5fa] text-white">
+        <div className="md:hidden py-4 px-6 bg-gradient-to-b from-[#1e3a8a]/10 to-[#eab308]/10 text-[#1e3a8a]">
           <nav>
             <ul className="flex flex-col gap-4 font-sans">
               <li>
@@ -80,6 +95,15 @@ function NavBar() {
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Home
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/about"
+                  className="block py-2 hover:text-[#eab308] transition-colors"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  About
                 </Link>
               </li>
               <li>
@@ -107,6 +131,24 @@ function NavBar() {
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Features
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/blog"
+                  className="block py-2 hover:text-[#eab308] transition-colors"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/support"
+                  className="block py-2 hover:text-[#eab308] transition-colors"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Support
                 </Link>
               </li>
               <li>

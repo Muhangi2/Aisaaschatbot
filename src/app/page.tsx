@@ -122,7 +122,7 @@ export default async function Home() {
               </div>
               <h3 className="text-xl font-sans font-bold mb-2 text-[#1e3a8a]">Seamless Setup</h3>
               <p className="text-[#4b5563] font-sans">
-                Integrate in minutes with no technical skills needed.
+                Integrate TeraSales AI into your website in just minutes—no technical skills or coding expertise required.
               </p>
             </div>
 
@@ -146,7 +146,7 @@ export default async function Home() {
               </div>
               <h3 className="text-xl font-sans font-bold mb-2 text-[#1e3a8a]">Always On</h3>
               <p className="text-[#4b5563] font-sans">
-                Engage customers 24/7, capturing every opportunity.
+                Engage your customers 24/7 with an AI that never sleeps, ensuring you capture every lead and opportunity.
               </p>
             </div>
 
@@ -170,7 +170,7 @@ export default async function Home() {
               </div>
               <h3 className="text-xl font-sans font-bold mb-2 text-[#1e3a8a]">Smart Responses</h3>
               <p className="text-[#4b5563] font-sans">
-                Deliver personalized replies tailored to each visitor.
+                Deliver personalized, context-aware replies to each visitor, enhancing engagement and boosting conversions.
               </p>
             </div>
 
@@ -193,7 +193,7 @@ export default async function Home() {
               </div>
               <h3 className="text-xl font-sans font-bold mb-2 text-[#1e3a8a]">Email Marketing</h3>
               <p className="text-[#4b5563] font-sans">
-                Automate campaigns and nurture leads with ease.
+                Automate targeted email campaigns to nurture leads, drive sales, and keep your audience engaged effortlessly.
               </p>
             </div>
           </div>
@@ -244,7 +244,7 @@ export default async function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gradient-to-t from-[#1e3a8a] to-[#60a5fa] py-12 px-6 text-white relative">
+      <footer className="bg-gradient-to-t from-[#1e3a8a]/10 to-[#eab308]/10 py-12 px-6 text-[#1e3a8a] relative">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
             <h3 className="text-xl font-sans font-bold mb-4">TeraSales AI</h3>
@@ -256,8 +256,11 @@ export default async function Home() {
             <h3 className="text-xl font-sans font-bold mb-4">Navigation</h3>
             <ul className="text-sm font-sans space-y-2">
               <li><Link href="/" className="hover:text-[#eab308] transition-colors">Home</Link></li>
+              <li><Link href="/about" className="hover:text-[#eab308] transition-colors">About</Link></li>
               <li><Link href="/pricing" className="hover:text-[#eab308] transition-colors">Pricing</Link></li>
               <li><Link href="/features" className="hover:text-[#eab308] transition-colors">Features</Link></li>
+              <li><Link href="/blog" className="hover:text-[#eab308] transition-colors">Blog</Link></li>
+              <li><Link href="/support" className="hover:text-[#eab308] transition-colors">Support</Link></li>
               <li><Link href="/contact" className="hover:text-[#eab308] transition-colors">Contact</Link></li>
             </ul>
           </div>
