@@ -49,7 +49,7 @@ export const MinMenu = ({
         </div>
 
         {/* Options */}
-        <div className="flex flex-col items-center bg-green-500">
+        <div className="flex flex-col items-center ">
           <MenuItem
             size="min"
             label="Sign out"
