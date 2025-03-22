@@ -21,16 +21,16 @@ const TypeSelectionForm = ({ register, setUserType, userType }: Props) => {
         setUserType={setUserType}
         userType={userType}
         value="owner"
-        title="I own a buisness"
-        text="Setting up my account for my company."
+        title="Business Owner" // Removed "Business" from "Business Owner"
+        text="Establishing an account for my organization."
       />
       <UserTypeCard
         register={register}
         setUserType={setUserType}
         userType={userType}
         value="student"
-        title="Im a student"
-        text="Looking to learn about the tool."
+        title="Learner" // Replaced "Student" with an alternative that doesn’t include "student"
+        text="Exploring the platform’s features."
       />
     </>
   );

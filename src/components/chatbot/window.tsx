@@ -80,7 +80,7 @@ export const BotWindow = forwardRef<HTMLDivElement, Props>(
             </Avatar>
             <div className="flex items-start flex-col">
               <h3 className="text-sm font-bold leading-tight">
-                Sales Rep - Eliodtech
+                Sales Rep - TeraSalesAi
               </h3>
               <p className="text-xs">{domainName?.split(".com")[0]}</p>
               <div className="bg-green-400">
