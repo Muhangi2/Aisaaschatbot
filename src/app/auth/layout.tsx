@@ -19,7 +19,7 @@ const Layout = async ({ children }: Props) => {
           Hi, I’m your AI powered sales assistant, Corinna!
         </h2>
         <p className="text-iridium md:text-sm mb-10">
-          Corinna is capable of capturing lead information without a form...{" "}
+          TeraSalesAi is capable of capturing lead information without a form...{" "}
           <br />
           something never done before 😉
         </p>
@@ -35,7 +35,7 @@ const Layout = async ({ children }: Props) => {
       </div>
       <div className="w-[600px] ld:w-full flex flex-col items-start p-6">
         <Image
-          src="/images/logo.png"
+          src="/images/justlogoo.png"
           alt="LOGO"
           sizes="100vw"
           style={{

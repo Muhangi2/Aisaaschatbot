@@ -24,7 +24,7 @@ const MaxMenu = ({ current, domains, onExpand, onSignOut }: Props) => {
     <div className="py-3 px-4 flex flex-col h-full w-full overflow-hidden">
       <div className="flex justify-between items-center " onClick={onExpand}>
         <Image
-          src="/images/logo.png"
+          src="/images/justlogoo.png"
           alt="LOGO"
           width={100}
           height={50}

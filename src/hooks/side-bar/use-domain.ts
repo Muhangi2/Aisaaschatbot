@@ -12,7 +12,7 @@ import { FieldValues, useForm } from 'react-hook-form'
 const upload = new UploadClient({
     publicKey: process.env.NEXT_PUBLIC_UPLOAD_CARE_PUBLIC_KEY as string,
 })
-
+// df
 export const useDomain = () => {
     const {
         register,
@@ -36,6 +36,7 @@ export const useDomain = () => {
     const onAddDomain = handleSubmit(async (values: FieldValues) => {
         setLoading(true)
         const uploaded = await upload.uploadFile(values.image[0])
+        console.log("uploaded",uploaded)
         const domain = await onIntegrateDomain(values.domain, uploaded.uuid)
         if (domain) {
             reset()
