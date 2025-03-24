@@ -1,5 +1,6 @@
 "use client";
-import { useEffect } from 'react';
+
+import { useEffect } from "react";
 
 const ChatFrame = () => {
   useEffect(() => {
@@ -14,25 +15,63 @@ const ChatFrame = () => {
     iframeStyles(`
       .chat-frame {
         position: fixed;
-        bottom: 50px;
-        right: 50px;
+        bottom: 30px;
+        right: 30px;
         border: none;
+        z-index: 1000;
       }
     `);
 
-    iframe.src = "aisaaschatbot-4c9v.onrender.com/chatbot";
+    iframe.src = "https://aisaaschatbot-4c9v.onrender.com/chatbot";
     iframe.classList.add('chat-frame');
     document.body.appendChild(iframe);
 
-    window.addEventListener("message", (e) => {
-      if (e.origin !== "aisaaschatbot-4c9v.onrender.com") return null;
-      let dimensions = JSON.parse(e.data);
-      iframe.width = dimensions.width;
-      iframe.height = dimensions.height;
-      iframe.contentWindow.postMessage("0fa412c4-5e38-477a-af37-af2a249f0035", "aisaaschatbot-4c9v.onrender.com/");
-    });
-  }, []);
+    const messageHandler = (e) => {
+      if (e.origin !== "https://aisaaschatbot-4c9v.onrender.com") return null;
 
+      let dimensions;
+      // Check if e.data is already an object
+      if (typeof e.data === 'object' && e.data !== null) {
+        dimensions = e.data; // Use it directly
+      } else if (typeof e.data === 'string') {
+        try {
+          dimensions = JSON.parse(e.data); // Parse if it’s a string
+        } catch (error) {
+          console.error("Failed to parse e.data as JSON:", e.data, error);
+          return; // Exit if parsing fails
+        }
+      } else {
+        console.error("Unexpected e.data type:", e.data);
+        return; // Exit if data is neither object nor string
+      }
+
+      // Ensure dimensions has width and height
+      if (dimensions.width && dimensions.height) {
+        iframe.width = dimensions.width;
+        iframe.height = dimensions.height;
+        iframe.contentWindow.postMessage(
+          "0fa412c4-5e38-477a-af37-af2a249f0035",
+          "https://aisaaschatbot-4c9v.onrender.com/"
+        );
+      } else {
+        console.warn("Dimensions missing width or height:", dimensions);
+      }
+    };
+
+    window.addEventListener("message", messageHandler);
+
+    // Cleanup function
+    return () => {
+      window.removeEventListener("message", messageHandler);
+      if (document.body.contains(iframe)) {
+        document.body.removeChild(iframe);
+      }
+      const style = document.querySelector('style');
+      if (style && document.head.contains(style)) {
+        document.head.removeChild(style);
+      }
+    };
+  }, []);
   return null;
 };
 

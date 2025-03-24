@@ -1,6 +1,7 @@
 import { onGetBlogPosts } from "@/actions/landing";
 import NavBar from "@/components/navbar";
 import { Button } from "@/components/ui/button";
+import ChatFrame from "@/components/chatframe/chatFrame";
 import {
   Card,
   CardContent,
@@ -283,6 +284,7 @@ export default async function Home() {
           © {new Date().getFullYear()} TeraSales AI. All rights reserved.
         </div>
       </footer>
+      <ChatFrame/>
     </main>
   );
 }

@@ -1,6 +1,5 @@
 "use client";
 import Section from "@/components/section-label";
-// import { useToast } from '@/components/ui/use-toast'
 import { useToast } from "@/hooks/use-toast";
 import { Copy } from "lucide-react";
 import React from "react";
@@ -15,32 +14,48 @@ const CodeSnippet = ({ id }: Props) => {
     const iframe = document.createElement("iframe");
     
     const iframeStyles = (styleString) => {
-    const style = document.createElement('style');
-    style.textContent = styleString;
-    document.head.append(style);
+      const style = document.createElement('style');
+      style.textContent = styleString;
+      document.head.append(style);
     }
     
-    iframeStyles('
-        .chat-frame {
-            position: fixed;
-            bottom: 50px;
-            right: 50px;
-            border: none;
-        }
-    ')
+    iframeStyles(\`
+      .chat-frame {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        border: none;
+        z-index: 1000;
+      }
+    \`)
     
-    iframe.src = "http://localhost:3000/chatbot"
-    iframe.classList.add('chat-frame')
-    document.body.appendChild(iframe)
+    iframe.src = "http://localhost:3000/chatbot";
+    iframe.classList.add('chat-frame');
+    document.body.appendChild(iframe);
     
     window.addEventListener("message", (e) => {
-        if(e.origin !== "http://localhost:3000") return null
-        let dimensions = JSON.parse(e.data)
-        iframe.width = dimensions.width
-        iframe.height = dimensions.height
-        iframe.contentWindow.postMessage("${id}", "http://localhost:3000/")
-    })
-        `;
+      if (e.origin !== "http://localhost:3000") return null;
+      let dimensions;
+      if (typeof e.data === 'object' && e.data !== null) {
+        dimensions = e.data;
+      } else if (typeof e.data === 'string') {
+        try {
+          dimensions = JSON.parse(e.data);
+        } catch (error) {
+          console.error("Failed to parse e.data:", error);
+          return;
+        }
+      } else {
+        console.error("Unexpected e.data type:", e.data);
+        return;
+      }
+      if (dimensions.width && dimensions.height) {
+        iframe.width = dimensions.width;
+        iframe.height = dimensions.height;
+        iframe.contentWindow.postMessage("${id}", "http://localhost:3000/");
+      }
+    });
+  `;
 
   return (
     <div className="mt-10 flex flex-col gap-5 items-start">

@@ -27,13 +27,10 @@ export const useSignInForm = () => {
         })
         if (authenticated.status === 'complete') {
           await setActive({ session: authenticated.createdSessionId })
-         
-          setLoading(false)
-          
-          // Use replace with a slight delay to ensure Clerk session is fully established
+        
           if (setTimeout(() => {
-            router.replace('/dashboard')
-          }, 10)){
+            router.push('/dashboard')
+          }, 10)){ 
             toast({
               title: 'Success',
               description: 'Welcome back!',
