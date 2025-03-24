@@ -39,7 +39,7 @@ const SettingsForm = ({ id, name, chatBot, plan }: Props) => {
     loading,
   } = useSettings(id);
   return (
-    <form className="flex flex-col gap-8 pb-10" onSubmit={onUpdateSettings}>
+    <form className="flex flex-col gap-8 pb-10 mr-6 " onSubmit={onUpdateSettings}>
       <div className="flex flex-col gap-3">
         <h2 className="font-bold text-2xl">Domain Settings</h2>
         <Separator orientation="horizontal" />
@@ -70,16 +70,16 @@ const SettingsForm = ({ id, name, chatBot, plan }: Props) => {
           </div>
           <div className="col-span-1 relative ">
             <Image
-              src="/images/bot-ui.png"
+              src="/images/website-chatbot.webp"
               className="sticky top-0"
               alt="bot-ui"
-              width={530}
+              width={500}
               height={769}
             />
           </div>
         </div>
       </div>
-      <div className="flex gap-5 justify-end">
+      <div className="flex gap-5 justify-end ">
         <Button
           onClick={onDeleteDomain}
           variant="destructive"

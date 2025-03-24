@@ -13,7 +13,7 @@ const Layout = async ({ children }: Props) => {
   if (user) redirect("/");
 
   return (
-    <div className="h-screen flex w-full justify-center bg-gradient-to-b from-[#1e3a8a]/10 to-[#eab308]/10 relative overflow-hidden">
+    <div className=" flex w-full justify-center bg-gradient-to-b from-[#1e3a8a]/10 to-[#eab308]/10 relative overflow-hidden">
       {/* Corner Gradients with Blue Glow */}
       <div className="absolute top-0 left-0 w-72 h-72 bg-gradient-to-br from-[#1e3a8a]/30 to-transparent rounded-full blur-3xl -translate-x-1/3 -translate-y-1/3"></div>
       <div className="absolute top-0 right-0 w-72 h-72 bg-gradient-to-bl from-[#1e3a8a]/30 to-transparent rounded-full blur-3xl translate-x-1/3 -translate-y-1/3"></div>

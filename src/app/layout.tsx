@@ -4,6 +4,7 @@ import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from "@/context/theme-provider";
+import ChatFrame from "@/components/chatframe/chatFrame";
 
 const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"] });
 
@@ -28,6 +29,7 @@ export default function RootLayout({
           >
             {children}
             <Toaster />
+            <ChatFrame/>
           </ThemeProvider>
         </ClerkProvider>
       </body>
