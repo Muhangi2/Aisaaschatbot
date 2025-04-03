@@ -1,3 +1,6 @@
+
+export const dynamic = "force-dynamic";
+
 import { onGetAllBookingsForCurrentUser } from '@/actions/appointments'
 import AllAppointments from '@/components/appointment/all-appointments'
 import InfoBar from '@/components/infobar'

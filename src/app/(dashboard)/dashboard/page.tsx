@@ -1,3 +1,6 @@
+
+export const dynamic = "force-dynamic";
+
 import { getUserAppointments } from '@/actions/appointments'
 import {
   getUserBalance,

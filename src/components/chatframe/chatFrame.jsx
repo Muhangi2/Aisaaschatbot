@@ -22,13 +22,14 @@ const ChatFrame = () => {
       }
     `);
 
-    iframe.src = "https://aisaaschatbot-4c9v.onrender.com/chatbot";
+    // iframe.src = "https://aisaaschatbot-4c9v.onrender.com/chatbot";
+    iframe.src = "http://localhost:3000/chatbot";
     iframe.classList.add('chat-frame');
     document.body.appendChild(iframe);
 
     const messageHandler = (e) => {
-      if (e.origin !== "https://aisaaschatbot-4c9v.onrender.com") return null;
-
+      // if (e.origin !== "https://aisaaschatbot-4c9v.onrender.com") return null;
+      if (e.origin !== "http://localhost:3000") return null;
       let dimensions;
       // Check if e.data is already an object
       if (typeof e.data === 'object' && e.data !== null) {
@@ -51,7 +52,8 @@ const ChatFrame = () => {
         iframe.height = dimensions.height;
         iframe.contentWindow.postMessage(
           "0fa412c4-5e38-477a-af37-af2a249f0035",
-          "https://aisaaschatbot-4c9v.onrender.com/"
+           "http://localhost:3000/"
+          // "https://aisaaschatbot-4c9v.onrender.com/"
         );
       } else {
         console.warn("Dimensions missing width or height:", dimensions);
