@@ -51,12 +51,12 @@ const Page = async (props: Props) => {
             title="Appointments"
             icon={<CalIcon />}
           />
-          <DashboardCard
+          {/* <DashboardCard
             // value={sales || 0}
             sales
             title="Total Sales"
             icon={<DollarSign />}
-          />
+          /> */}
         </div>
         <div className="w-full grid grid-cols-1 lg:grid-cols-2 py-10">
           <div>
