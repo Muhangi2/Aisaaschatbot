@@ -29,13 +29,13 @@ const pricingCards = [
   {
     title: "Plus",
     description: "For serious agency owners",
-    price: "$67/month",
+    price: "$50/month",
     features: ["2 domain", "50 contacts", "50 Emails per month"],
   },
   {
     title: "Ultimate",
     description: "The ultimate agency kit",
-    price: "$97/month",
+    price: "$80/month",
     features: ["Unlimited domain", "500 Contacts", "500 Emails"],
   },
 ];
@@ -275,8 +275,8 @@ export default async function Home() {
             <h3 className="text-xl font-sans font-bold mb-4">Get in Touch</h3>
             <p className="text-sm font-sans">
               Email: hello@terasales.ai<br />
-              Phone: (555) 123-4567<br />
-              Address: 456 Innovation St, Future City
+              Phone: 0780487574<br />
+              Address: Kavule wadegeya
             </p>
           </div>
         </div>
