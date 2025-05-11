@@ -9,10 +9,16 @@ import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { FieldValues, useForm } from 'react-hook-form'
 
-const upload = new UploadClient({
-    publicKey: process.env.NEXT_PUBLIC_UPLOAD_CARE_PUBLIC_KEY as string,
-})
-// df
+// Initialize UploadCare client with error handling
+const getUploadClient = () => {
+    const publicKey = process.env.NEXT_PUBLIC_UPLOAD_CARE_PUBLIC_KEY;
+    if (!publicKey) {
+        console.error('UploadCare public key is not configured');
+        return null;
+    }
+    return new UploadClient({ publicKey });
+};
+
 export const useDomain = () => {
     const {
         register,
@@ -34,20 +40,58 @@ export const useDomain = () => {
     }, [pathname])
 
     const onAddDomain = handleSubmit(async (values: FieldValues) => {
-        setLoading(true)
-        const uploaded = await upload.uploadFile(values.image[0])
-        console.log("uploaded",uploaded)
-        const domain = await onIntegrateDomain(values.domain, uploaded.uuid)
-        if (domain) {
-            reset()
-            setLoading(false)
+        try {
+            setLoading(true);
+            
+            // Check if we have an image to upload
+            if (!values.image?.[0]) {
+                toast({
+                    title: 'Error',
+                    description: 'Please select an image to upload',
+                });
+                return;
+            }
+
+            // Get upload client
+            const upload = getUploadClient();
+            if (!upload) {
+                toast({
+                    title: 'Error',
+                    description: 'File upload service is not configured',
+                });
+                return;
+            }
+
+            // Upload the file
+            const uploaded = await upload.uploadFile(values.image[0]);
+            console.log("uploaded", uploaded);
+
+            if (!uploaded?.uuid) {
+                throw new Error('Failed to upload image');
+            }
+
+            // Integrate domain with the uploaded image
+            const domain = await onIntegrateDomain(values.domain, uploaded.uuid);
+            
+            if (domain) {
+                reset();
+                setLoading(false);
+                toast({
+                    title: domain.status === 200 ? 'Success' : 'Error',
+                    description: domain.message,
+                });
+                router.refresh();
+            }
+        } catch (error) {
+            console.error('Domain creation error:', error);
             toast({
-                title: domain.status == 200 ? 'Success' : 'Error',
-                description: domain.message,
-            })
-            router.refresh()
+                title: 'Error',
+                description: error instanceof Error ? error.message : 'Failed to create domain',
+            });
+        } finally {
+            setLoading(false);
         }
-    })
+    });
 
     return {
         register,

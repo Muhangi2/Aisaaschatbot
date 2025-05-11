@@ -29,13 +29,13 @@ const pricingCards = [
   {
     title: "Plus",
     description: "For serious agency owners",
-    price: "$50/month",
+    price: "$10/month",
     features: ["2 domain", "50 contacts", "50 Emails per month"],
   },
   {
     title: "Ultimate",
     description: "The ultimate agency kit",
-    price: "$80/month",
+    price: "$20/month",
     features: ["Unlimited domain", "500 Contacts", "500 Emails"],
   },
 ];

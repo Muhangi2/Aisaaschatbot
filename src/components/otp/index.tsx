@@ -7,11 +7,17 @@ type Props = {
 }
 
 const OTPInput = ({ otp, setOtp }: Props) => {
+  const handleChange = (value: string) => {
+    // Only allow numbers
+    const numbersOnly = value.replace(/[^0-9]/g, '')
+    setOtp(numbersOnly)
+  }
+
   return (
     <InputOTP
       maxLength={6}
       value={otp}
-      onChange={(otp) => setOtp(otp)}
+      onChange={handleChange}
     >
       <div className="flex gap-3">
         <div>
