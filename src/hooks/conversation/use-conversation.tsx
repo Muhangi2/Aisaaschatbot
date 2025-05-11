@@ -14,8 +14,9 @@ import {
   import { zodResolver } from '@hookform/resolvers/zod'
   import { useEffect, useRef, useState } from 'react'
   import { useForm } from 'react-hook-form'
+  import { useWebSocket } from '@/hooks/use-websocket'
   
-  export const useConversation = () => {
+  export const useConversation = (chatRoom: string) => {
     const { register, watch } = useForm({
       resolver: zodResolver(ConversationSearchSchema),
       mode: 'onChange',
@@ -36,6 +37,8 @@ import {
       }[]
     >([])
     const [loading, setLoading] = useState<boolean>(false)
+    const { subscribe, unsubscribe } = useWebSocket(chatRoom)
+  
     useEffect(() => {
       const search = watch(async (value) => {
         setLoading(true)
@@ -65,6 +68,28 @@ import {
         console.log(error)
       }
     }
+  
+    useEffect(() => {
+      if (chatRoom) {
+        // Subscribe to real-time updates
+        subscribe('realtime-mode', (data: any) => {
+          // Handle real-time updates
+          if (data.type === 'message') {
+            // Handle new message
+            setChats((prev) => [...prev, data.message])
+          } else if (data.type === 'status') {
+            // Handle status updates
+            // setStatus(data.status)
+          }
+        })
+  
+        // Cleanup subscription
+        return () => {
+          unsubscribe('realtime-mode')
+        }
+      }
+    }, [chatRoom, subscribe, unsubscribe])
+  
     return {
       register,
       chatRooms,
@@ -137,17 +162,24 @@ import {
   
     useEffect(() => {
       if (chatRoom) {
-        pusherClient.subscribe(chatRoom)
-        pusherClient.bind('realtime-mode', (data: any) => {
-          setChats((prev) => [...prev, data.chat])
+        // Subscribe to real-time updates
+        subscribe('realtime-mode', (data: any) => {
+          // Handle real-time updates
+          if (data.type === 'message') {
+            // Handle new message
+            setChats((prev) => [...prev, data.message])
+          } else if (data.type === 'status') {
+            // Handle status updates
+            // setStatus(data.status)
+          }
         })
   
+        // Cleanup subscription
         return () => {
-          pusherClient.unbind('realtime-mode')
-          pusherClient.unsubscribe(chatRoom)
+          unsubscribe('realtime-mode')
         }
       }
-    }, [chatRoom])
+    }, [chatRoom, subscribe, unsubscribe])
   
     const onHandleSentMessage = handleSubmit(async (values) => {
       try {

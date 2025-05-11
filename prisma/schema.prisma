@@ -171,3 +171,6 @@ enum Role {
   user
   assistant
 }
+enum Status{
+  PENDING
+}
