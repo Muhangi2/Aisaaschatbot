@@ -22,14 +22,14 @@ const ChatFrame = () => {
       }
     `);
 
-    // iframe.src = "terasalesai.netlify.app/chatbot";
-    iframe.src = "http://localhost:3000/chatbot";
+    iframe.src = "terasalesai.netlify.app/chatbot";
+    // iframe.src = "http://localhost:3000/chatbot";
     iframe.classList.add('chat-frame');
     document.body.appendChild(iframe);
 
     const messageHandler = (e) => {
-      // if (e.origin !== "terasalesai.netlify.app") return null;
-      if (e.origin !== "http://localhost:3000") return null;
+      if (e.origin !== "https://terasalesai.netlify.app") return null;
+      // if (e.origin !== "http://localhost:3000") return null;
       let dimensions;
       // Check if e.data is already an object
       if (typeof e.data === 'object' && e.data !== null) {
@@ -52,8 +52,8 @@ const ChatFrame = () => {
         iframe.height = dimensions.height;
         iframe.contentWindow.postMessage(
           "0fa412c4-5e38-477a-af37-af2a249f0035",
-           "http://localhost:3000/"
-          // "terasalesai.netlify.app/"
+          //  "http://localhost:3000/"
+          "https://terasalesai.netlify.app/"
         );
       } else {
         console.warn("Dimensions missing width or height:", dimensions);
