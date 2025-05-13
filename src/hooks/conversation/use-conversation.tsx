@@ -16,7 +16,7 @@ import {
   import { useForm } from 'react-hook-form'
   import { useWebSocket } from '@/hooks/use-websocket'
   
-  export const useConversation = (chatRoom: string) => {
+  export const useConversation = (chatRoom?: string) => {
     const { register, watch } = useForm({
       resolver: zodResolver(ConversationSearchSchema),
       mode: 'onChange',
@@ -37,7 +37,7 @@ import {
       }[]
     >([])
     const [loading, setLoading] = useState<boolean>(false)
-    const { subscribe, unsubscribe } = useWebSocket(chatRoom)
+    const { subscribe, unsubscribe } = useWebSocket(chatRoom || '')
   
     useEffect(() => {
       const search = watch(async (value) => {
@@ -148,6 +148,8 @@ import {
       resolver: zodResolver(ChatBotMessageSchema),
       mode: 'onChange',
     })
+    const { subscribe, unsubscribe } = useWebSocket(chatRoom || '')
+  
     const onScrollToBottom = () => {
       messageWindowRef.current?.scroll({
         top: messageWindowRef.current.scrollHeight,

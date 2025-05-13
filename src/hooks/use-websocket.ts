@@ -5,22 +5,25 @@ export const useWebSocket = (roomId: string) => {
     const socketRef = useRef<Socket | null>(null);
 
     useEffect(() => {
-        // Initialize socket connection
-        socketRef.current = io({
-            path: '/api/socket',
-            addTrailingSlash: false,
-        });
+        // Only initialize socket if we have a valid roomId
+        if (roomId) {
+            // Initialize socket connection
+            socketRef.current = io({
+                path: '/api/socket',
+                addTrailingSlash: false,
+            });
 
-        // Join room
-        socketRef.current.emit('join-room', roomId);
+            // Join room
+            socketRef.current.emit('join-room', roomId);
 
-        // Cleanup on unmount
-        return () => {
-            if (socketRef.current) {
-                socketRef.current.emit('leave-room', roomId);
-                socketRef.current.disconnect();
-            }
-        };
+            // Cleanup on unmount
+            return () => {
+                if (socketRef.current) {
+                    socketRef.current.emit('leave-room', roomId);
+                    socketRef.current.disconnect();
+                }
+            };
+        }
     }, [roomId]);
 
     const sendMessage = (event: string, data: any) => {
